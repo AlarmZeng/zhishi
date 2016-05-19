@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/colorLightBlue"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_menu_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="45dp"
+        android:background="@drawable/ic_account_circle_white_24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="首页"
+        android:clickable="true"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textColor="#000"/>
+
+</LinearLayout>
