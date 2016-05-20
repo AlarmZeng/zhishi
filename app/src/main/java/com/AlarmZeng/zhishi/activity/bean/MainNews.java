@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by hunter_zeng on 2016/5/18.
  */
-public class FirstPage {
+public class MainNews {
 
 
     /**

@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.AlarmZeng.zhishi.R;
-import com.AlarmZeng.zhishi.activity.fragment.FirstFragment;
+import com.AlarmZeng.zhishi.activity.fragment.MainNewsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
 
-        FirstFragment fragment = new FirstFragment();
+        MainNewsFragment fragment = new MainNewsFragment();
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

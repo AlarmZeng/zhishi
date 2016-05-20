@@ -11,17 +11,18 @@
         android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal" />
 
+
     <TextView
         android:id="@+id/tv_top_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:maxLines="3"
         android:text="读读日报 24小时热门 TOP5 菜式好歌词 读读日报 24小时热门 TOP5 菜式好歌词"
         android:textColor="#fff"
-        android:textSize="24sp" />
+        android:textSize="22sp" />
 
 </FrameLayout>
