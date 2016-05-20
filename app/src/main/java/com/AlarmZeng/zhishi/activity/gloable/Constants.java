@@ -10,4 +10,6 @@ public class Constants {
     public static final String MENU_LIST_RUL = "http://news-at.zhihu.com/api/4/themes";
 
     public static final String TOP_STORIES_URL = "http://news-at.zhihu.com/api/4/news/latest";
+
+    public static final String BEFORE_NEWS_URL = "http://news.at.zhihu.com/api/4/news/before/";
 }

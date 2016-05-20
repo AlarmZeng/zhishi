@@ -1,5 +1,6 @@
 package com.AlarmZeng.zhishi.activity.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -59,10 +60,10 @@ public class MainNews {
         this.top_stories = top_stories;
     }
 
-    public static class Stories {
+    public static class Stories implements Serializable {
         private String title;
-        private String ga_prefix;
-        private boolean multipic;
+//        private String ga_prefix;
+//        private boolean multipic;
         private int type;
         private String id;
         private List<String> images;
@@ -75,7 +76,7 @@ public class MainNews {
             this.title = title;
         }
 
-        public String getGa_prefix() {
+        /*public String getGa_prefix() {
             return ga_prefix;
         }
 
@@ -89,7 +90,7 @@ public class MainNews {
 
         public void setMultipic(boolean multipic) {
             this.multipic = multipic;
-        }
+        }*/
 
         public int getType() {
             return type;

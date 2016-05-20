@@ -11,6 +11,8 @@ import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.lidroid.xutils.BitmapUtils;
 
+import java.util.List;
+
 /**
  * Created by hunter_zeng on 2016/5/19.
  */
@@ -27,6 +29,12 @@ public class MainNewsItemAdapter extends BaseAdapter {
         this.context = context;
         this.pageData = pageData;
         utils = new BitmapUtils(context);
+    }
+
+    public void addList(List<MainNews.Stories> stories) {
+
+        pageData.getStories().addAll(stories);
+        notifyDataSetChanged();
     }
 
     @Override

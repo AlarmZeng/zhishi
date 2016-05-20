@@ -3,6 +3,7 @@ package com.AlarmZeng.zhishi.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import com.AlarmZeng.zhishi.activity.fragment.MainNewsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SwipeRefreshLayout refresh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initView();
         initData();
+    }
+
+    private void initView() {
+
+        refresh = (SwipeRefreshLayout) findViewById(R.id.srl_swipe_refresh);
+        refresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_blue_light,android.R.color.holo_blue_light,android.R.color.holo_blue_light);
+
     }
 
     private void initData() {
@@ -31,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.fl_fragment_container, fragment);
         transaction.commit();
+    }
+
+    public void setSwipeRefreshEnable(boolean enable) {
+
+        refresh.setEnabled(enable);
+    }
+
+    public SwipeRefreshLayout getRefresh() {
+
+        return refresh;
     }
 
     @Override

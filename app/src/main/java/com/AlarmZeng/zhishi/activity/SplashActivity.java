@@ -51,8 +51,11 @@ public class SplashActivity extends Activity {
         if (!TextUtils.isEmpty(result)) {
             processResult(result);
         }
+        else {
+            mSplashImage.setImageResource(R.drawable.splash_image);
+            initAnimation();
+        }
 
-        getDataFromServer();
     }
 
     private void getDataFromServer() {
@@ -73,6 +76,11 @@ public class SplashActivity extends Activity {
             public void onFailure(HttpException e, String s) {
 
                 Toast.makeText(SplashActivity.this, "发生错误", Toast.LENGTH_SHORT).show();
+
+                Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(mainIntent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -110,6 +118,9 @@ public class SplashActivity extends Activity {
 
                 if (!NetWorkUtils.isNetworkConnected(SplashActivity.this)) {
                     Toast.makeText(SplashActivity.this, "网络没有连接", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    getDataFromServer();
                 }
 
                 Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
