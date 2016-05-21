@@ -1,5 +1,6 @@
 package com.AlarmZeng.zhishi.activity.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -107,7 +108,7 @@ public class News {
         this.editors = editors;
     }
 
-    public static class NewsStories {
+    public static class NewsStories implements Serializable{
         private int type;
         private String id;
         private String title;

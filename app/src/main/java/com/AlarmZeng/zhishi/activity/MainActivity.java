@@ -1,14 +1,18 @@
 package com.AlarmZeng.zhishi.activity;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.fragment.MainNewsFragment;
@@ -17,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout refresh;
 
-    private DrawerLayout drawer;
+    private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    private AnimationDrawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +35,24 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-//        toolbar.setNavigationIcon();
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerArrowDrawable arrowDrawable = new DrawerArrowDrawable(MainActivity.this);
+        toolbar.setNavigationIcon(arrowDrawable);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawers();
+                }
+                else {
+                    drawerLayout.openDrawer(Gravity.LEFT);
+                }
+
+            }
+        });
 
         initView();
         initData();
@@ -69,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setDrawerClose() {
 
-        drawer.closeDrawers();
+        drawerLayout.closeDrawers();
     }
 
     public void setToolbarTitle(String title) {

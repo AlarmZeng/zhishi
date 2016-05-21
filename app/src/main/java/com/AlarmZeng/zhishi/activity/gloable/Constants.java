@@ -15,5 +15,5 @@ public class Constants {
 
     public static final String MENU_NEWS_URL = "http://news-at.zhihu.com/api/4/theme/";
 
-    public static final String MAIN_CONTNET_URL = "http://news-at.zhihu.com/api/4/news/";
+    public static final String CONTENT_URL = "http://news-at.zhihu.com/api/4/news/";
 }

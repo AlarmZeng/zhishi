@@ -1,20 +1,25 @@
 package com.AlarmZeng.zhishi.activity.fragment;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
+import com.AlarmZeng.zhishi.activity.NewsContentActivity;
 import com.AlarmZeng.zhishi.activity.adapter.NewsItemAdapter;
 import com.AlarmZeng.zhishi.activity.bean.News;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -110,6 +115,35 @@ public class NewsFragment extends BaseFragment{
             public void onScroll(AbsListView absListView, int firstVisibleItem, int i1, int i2) {
 
                 ((MainActivity) mActivity).setSwipeRefreshEnable(false);
+            }
+        });
+
+        newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                int headerCount = newsListView.getHeaderViewsCount();
+
+                if (position < headerCount) {
+                    return;
+                }
+
+                News.NewsStories newsStories = news.getStories().get(position - headerCount);
+
+                String readId = PrefUtils.getString(mActivity, "is_read", "");
+
+                TextView tvTitle = (TextView) view.findViewById(R.id.tv_news_item_title);
+                tvTitle.setTextColor(Color.GRAY);
+
+                if (!readId.contains(newsStories.getId())) {
+
+                    readId = readId + "," + newsStories.getId();
+                    PrefUtils.putString(mActivity, "is_read", readId);
+                }
+
+                Intent newsContentIntent = new Intent(mActivity, NewsContentActivity.class);
+                newsContentIntent.putExtra("newsStories", newsStories);
+                startActivity(newsContentIntent);
             }
         });
     }

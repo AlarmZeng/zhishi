@@ -1,6 +1,7 @@
 package com.AlarmZeng.zhishi.activity.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.News;
+import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
@@ -69,19 +71,18 @@ public class NewsItemAdapter extends BaseAdapter {
 
         holder.newsTitle.setText(stories.getTitle());
 
+        String readId = PrefUtils.getString(context, "is_read", "");
+        if (readId.contains(stories.getId())) {
+            holder.newsTitle.setTextColor(Color.GRAY);
+        }
+
         if (stories.getImages() != null) {
             holder.newsImage.setVisibility(View.VISIBLE);
             utils.display(holder.newsImage, stories.getImages().get(0));
         }
         else {
-            holder.newsImage.setVisibility(View.GONE);
+            holder.newsImage.setVisibility(View.INVISIBLE);
         }
-
-        /*String images = stories.getImages().get(0);
-
-        if (!TextUtils.isEmpty(images)) {
-            utils.display(holder.newsImage, images);
-        }*/
 
         return view;
     }

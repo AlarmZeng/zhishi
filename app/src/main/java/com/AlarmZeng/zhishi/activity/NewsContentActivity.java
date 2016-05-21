@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.Content;
-import com.AlarmZeng.zhishi.activity.bean.MainNews;
+import com.AlarmZeng.zhishi.activity.bean.News;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -25,38 +25,33 @@ import com.lidroid.xutils.http.client.HttpRequest;
 /**
  * Created by hunter_zeng on 2016/5/21.
  */
-public class MainContentActivity extends AppCompatActivity {
+public class NewsContentActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private WebView webView;
+    private CollapsingToolbarLayout toolbarLayout;
 
     private ImageView image;
 
-    private CollapsingToolbarLayout toolbarLayout;
-    private MainNews.TopStories topStories;
-    private MainNews.Stories stories;
+    private WebView webView;
+    private News.NewsStories newsStories;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content_main);
+        setContentView(R.layout.activity_content_news);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        newsStories = (News.NewsStories) getIntent().getSerializableExtra("newsStories");
+
+        toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.ctl_collapsing_toolbar);
+        image = (ImageView) findViewById(R.id.image_view);
+        webView = (WebView) findViewById(R.id.web_view);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        topStories = (MainNews.TopStories) getIntent().getSerializableExtra("topStories");
-        stories = (MainNews.Stories) getIntent().getSerializableExtra("stories");
-
-        image = (ImageView) findViewById(R.id.image_view);
-        toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.ctl_collapsing_toolbar);
-
-        if (topStories != null) {
-            toolbarLayout.setTitle(topStories.getTitle());
-        }
-        else {
-            toolbarLayout.setTitle(stories.getTitle());
-        }
+        toolbarLayout.setTitle(newsStories.getTitle());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,35 +60,24 @@ public class MainContentActivity extends AppCompatActivity {
             }
         });
 
-        webView = (WebView) findViewById(R.id.web_view);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDatabaseEnabled(true);
         settings.setAppCacheEnabled(true);
+        settings.setDomStorageEnabled(true);
 
         initData();
-
     }
 
     private void initData() {
 
-        String url;
-        if (topStories != null) {
-            url = Constants.CONTENT_URL + topStories.getId();
-        }
-        else {
-            url = Constants.CONTENT_URL + stories.getId();
-        }
-
         HttpUtils utils = new HttpUtils();
-        utils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
+        utils.send(HttpRequest.HttpMethod.GET, Constants.CONTENT_URL + newsStories.getId(), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
                 String result = responseInfo.result;
-
                 processResult(result);
             }
 
@@ -109,13 +93,8 @@ public class MainContentActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Content content = gson.fromJson(result, Content.class);
 
-        BitmapUtils utils = new BitmapUtils(MainContentActivity.this);
+        BitmapUtils utils = new BitmapUtils(NewsContentActivity.this);
         utils.display(image, content.getImage());
-
-        /*StringBuilder sb = new StringBuilder();
-        sb.append("<HTML><HEAD><LINK href=\"news.css\" type=\"text/css\" rel=\"stylesheet\"/></HEAD><body>");
-        sb.append(content.getBody());
-        sb.append("</body></HTML>");*/
 
         String html = "<HTML><HEAD><LINK href=\"news.css\" type=\"text/css\" rel=\"stylesheet\"/></HEAD><body>" + content.getBody() + "</body></HTML>";
         html = html.replace("<div class=\"img-place-holder\">", "");

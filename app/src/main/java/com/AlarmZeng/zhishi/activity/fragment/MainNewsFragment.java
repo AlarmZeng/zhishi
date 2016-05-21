@@ -1,6 +1,7 @@
 package com.AlarmZeng.zhishi.activity.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
@@ -272,6 +274,16 @@ public class MainNewsFragment extends BaseFragment {
 
                 int headerCount = listView.getHeaderViewsCount();
                 MainNews.Stories stories = mainNews.getStories().get(position - headerCount);
+
+                String readId = PrefUtils.getString(mActivity, "is_read", "");
+                TextView tvTitle = (TextView) view.findViewById(R.id.tv_list_content);
+                tvTitle.setTextColor(Color.GRAY);
+                if (!readId.contains(stories.getId())){
+
+                    readId = readId + "," + stories.getId();
+                    PrefUtils.putString(mActivity, "is_read", readId);
+                }
+
                 Intent mainContentIntent = new Intent(mActivity, MainContentActivity.class);
                 mainContentIntent.putExtra("stories", stories);
                 startActivity(mainContentIntent);
