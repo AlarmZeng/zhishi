@@ -75,6 +75,9 @@ public class NewsItemAdapter extends BaseAdapter {
         if (readId.contains(stories.getId())) {
             holder.newsTitle.setTextColor(Color.GRAY);
         }
+        else {
+            holder.newsTitle.setTextColor(Color.BLACK);
+        }
 
         if (stories.getImages() != null) {
             holder.newsImage.setVisibility(View.VISIBLE);

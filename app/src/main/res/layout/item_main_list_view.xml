@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/card_background_selector"
-    android:descendantFocusability="afterDescendants"
-    android:orientation="horizontal"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:layout_margin="14dp"
+    android:background="#fff0f0f0"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_list_content"
-        android:layout_width="0dp"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"
-        android:maxLines="3"
-        android:text="复仇者联盟那么多的东西这些经济损失了有事的好坏佛啊回复"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+        android:layout_margin="12dp"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/iv_list_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_margin="12dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background_selector"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/tv_list_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:maxLines="3"
+            android:text="复仇者联盟那么多的东西这些经济损失了有事的好坏佛啊回复"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_list_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="12dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

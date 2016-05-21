@@ -19,26 +19,16 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07cdc5a3-e2ae-4a00-bf1f-91cf56b25c3c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/NewsContentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainContentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainContentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/News.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/News.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/NewsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/NewsFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_news.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_news.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_news_list_view.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_news_list_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_content_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_content_news.xml" />
     </list>
     <ignored path="知事.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,27 +53,63 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="282" column="60" selection-start-line="282" selection-start-column="20" selection-end-line="282" selection-end-column="60" />
+              <caret line="282" column="93" selection-start-line="282" selection-start-column="93" selection-end-line="282" selection-end-column="93" />
               <folding>
-                <element signature="e#2110#2496#0" expanded="true" />
-                <element signature="e#2495#2496#0" expanded="true" />
+                <element signature="e#2118#2504#0" expanded="true" />
+                <element signature="e#2503#2504#0" expanded="true" />
                 <element signature="method#initView#0;class#MainNewsFragment#0" expanded="true" />
-                <element signature="method#onSuccess#0;class#4021:4444" expanded="true" />
-                <element signature="method#onFailure#0;class#4021:4444" expanded="true" />
-                <element signature="method#onPageScrolled#0;class#5600:6332" expanded="true" />
-                <element signature="method#onPageSelected#0;class#5600:6332" expanded="true" />
-                <element signature="method#onPageScrollStateChanged#0;class#5600:6332" expanded="true" />
-                <element signature="e#6412#6553#0" expanded="true" />
-                <element signature="e#6552#6553#0" expanded="true" />
-                <element signature="e#6606#7149#0" expanded="true" />
-                <element signature="e#7148#7149#0" expanded="true" />
-                <element signature="method#onScrollStateChanged#0;class#7355:8110" expanded="true" />
-                <element signature="method#onScroll#0;class#7355:8110" expanded="true" />
-                <element signature="e#8154#9133#0" expanded="true" />
-                <element signature="e#9132#9133#0" expanded="true" />
-                <element signature="method#onSuccess#0;class#9449:9794" expanded="true" />
-                <element signature="method#onFailure#0;class#9449:9794" expanded="true" />
+                <element signature="method#onSuccess#0;class#4029:4452" expanded="true" />
+                <element signature="method#onFailure#0;class#4029:4452" expanded="true" />
+                <element signature="method#processResult#0;class#MainNewsFragment#0" expanded="true" />
+                <element signature="method#onPageScrolled#0;class#5832:6564" expanded="true" />
+                <element signature="method#onPageSelected#0;class#5832:6564" expanded="true" />
+                <element signature="method#onPageScrollStateChanged#0;class#5832:6564" expanded="true" />
+                <element signature="e#6644#6785#0" expanded="true" />
+                <element signature="e#6784#6785#0" expanded="true" />
+                <element signature="e#6838#7381#0" expanded="true" />
+                <element signature="e#7380#7381#0" expanded="true" />
+                <element signature="method#onScrollStateChanged#0;class#7587:8342" expanded="true" />
+                <element signature="method#onScroll#0;class#7587:8342" expanded="true" />
+                <element signature="e#8386#9366#0" expanded="true" />
+                <element signature="e#9365#9366#0" expanded="true" />
+                <element signature="method#loadMore#0;class#MainNewsFragment#0" expanded="true" />
+                <element signature="method#getBeforeDataFromServer#0;class#MainNewsFragment#0" expanded="true" />
+                <element signature="method#onSuccess#0;class#9682:10027" expanded="true" />
+                <element signature="method#onFailure#0;class#9682:10027" expanded="true" />
+                <element signature="method#processBeforeResult#0;class#MainNewsFragment#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainNewsItemAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="106" column="51" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
+              <folding>
+                <element signature="method#MainNewsItemAdapter#0;class#MainNewsItemAdapter#0" expanded="true" />
+                <element signature="method#addList#0;class#MainNewsItemAdapter#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1145#1146#0" expanded="true" />
+                <element signature="e#1202#1203#0" expanded="true" />
+                <element signature="e#1260#1261#0" expanded="true" />
+                <element signature="e#1317#1318#0" expanded="true" />
+                <element signature="e#1348#1349#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="item_main_list_view.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33595285">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,43 +123,6 @@
                 <element signature="e#3706#4803#0" expanded="true" />
                 <element signature="e#4802#4803#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrefUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/utils/PrefUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsItemAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5283688">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-              <folding>
-                <element signature="method#NewsItemAdapter#0;class#NewsItemAdapter#0" expanded="true" />
-                <element signature="e#833#834#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#937#938#0" expanded="true" />
-                <element signature="e#991#992#0" expanded="true" />
-                <element signature="method#getView#0;class#NewsItemAdapter#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainNewsItemAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="77" selection-start-line="67" selection-start-column="77" selection-end-line="67" selection-end-column="77" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -162,10 +151,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -1888,7 +1877,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cachemodule/src/main/java/com/alarm/cachemodule/MainActivity.java" />
         <option value="$PROJECT_DIR$/cachemodule/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/utils/VolleySingle.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -1913,20 +1901,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MenuFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_view_pager.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/Content.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/MainNews.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsPagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_news_1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_news_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_content_news.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/News.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/card_backgroud_default.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/card_background_default.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/card_background_pressed.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/card_backgroud_selector.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_news.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_news_list_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainContentActivity.java" />
@@ -1935,10 +1920,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/NewsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view_two.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/MainNews.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml" />
       </list>
     </option>
   </component>
@@ -2042,62 +2031,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="知事" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhishi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="知事" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhishi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2690,36 +2623,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64576274" sideWeight="0.5090498" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64576274" sideWeight="0.49095023" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.4969834" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5030166" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962293" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -2739,42 +2642,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37328094">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.43617">
-          <caret line="38" column="117" selection-start-line="38" selection-start-column="117" selection-end-line="38" selection-end-column="117" />
-          <folding>
-            <element signature="method#initData#0;class#SplashActivity#0" expanded="false" />
-            <element signature="method#getDataFromServer#0;class#SplashActivity#0" expanded="false" />
-            <element signature="method#onSuccess#0;class#1944:2708" expanded="false" />
-            <element signature="method#onFailure#0;class#1944:2708" expanded="false" />
-            <element signature="method#processResult#0;class#SplashActivity#0" expanded="false" />
-            <element signature="method#initAnimation#0;class#SplashActivity#0" expanded="false" />
-            <element signature="method#onAnimationStart#0;class#3412:4276" expanded="false" />
-            <element signature="method#onAnimationEnd#0;class#3412:4276" expanded="false" />
-            <element signature="method#onAnimationRepeat#0;class#3412:4276" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/EclipseForAndroid/Documents/sdk/platforms/android-23/android.jar!/android/widget/AdapterView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6303502">
-          <caret line="212" column="32" selection-start-line="212" selection-start-column="32" selection-end-line="212" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8758865">
@@ -2918,50 +2785,50 @@
         <state vertical-scroll-proportion="0.28723404">
           <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding>
-            <element signature="e#7725#7726#0" expanded="true" />
-            <element signature="e#7752#7753#0" expanded="true" />
-            <element signature="e#7792#7793#0" expanded="true" />
-            <element signature="e#7824#7825#0" expanded="true" />
-            <element signature="e#7863#7864#0" expanded="true" />
-            <element signature="e#7898#7899#0" expanded="true" />
-            <element signature="e#7954#7955#0" expanded="true" />
-            <element signature="e#8002#8003#0" expanded="true" />
-            <element signature="e#8034#8035#0" expanded="true" />
-            <element signature="e#8062#8063#0" expanded="true" />
-            <element signature="e#8104#8105#0" expanded="true" />
-            <element signature="e#8138#8139#0" expanded="true" />
-            <element signature="e#8170#8171#0" expanded="true" />
-            <element signature="e#8198#8199#0" expanded="true" />
-            <element signature="e#8240#8241#0" expanded="true" />
-            <element signature="e#8274#8275#0" expanded="true" />
-            <element signature="e#8310#8311#0" expanded="true" />
-            <element signature="e#8342#8343#0" expanded="true" />
-            <element signature="e#8392#8393#0" expanded="true" />
-            <element signature="e#8434#8435#0" expanded="true" />
-            <element signature="e#8470#8471#0" expanded="true" />
-            <element signature="e#8502#8503#0" expanded="true" />
-            <element signature="e#8552#8553#0" expanded="true" />
-            <element signature="e#8594#8595#0" expanded="true" />
-            <element signature="e#8622#8623#0" expanded="true" />
-            <element signature="e#8649#8650#0" expanded="true" />
-            <element signature="e#8686#8687#0" expanded="true" />
-            <element signature="e#8718#8719#0" expanded="true" />
-            <element signature="e#8747#8748#0" expanded="true" />
-            <element signature="e#8772#8773#0" expanded="true" />
-            <element signature="e#8808#8809#0" expanded="true" />
-            <element signature="e#8836#8837#0" expanded="true" />
-            <element signature="e#8866#8867#0" expanded="true" />
-            <element signature="e#8891#8892#0" expanded="true" />
-            <element signature="e#8928#8929#0" expanded="true" />
-            <element signature="e#8956#8957#0" expanded="true" />
-            <element signature="e#8995#8996#0" expanded="true" />
-            <element signature="e#9024#9025#0" expanded="true" />
-            <element signature="e#9074#9075#0" expanded="true" />
-            <element signature="e#9110#9111#0" expanded="true" />
-            <element signature="e#9146#9147#0" expanded="true" />
-            <element signature="e#9172#9173#0" expanded="true" />
-            <element signature="e#9216#9217#0" expanded="true" />
-            <element signature="e#9246#9247#0" expanded="true" />
+            <element signature="e#7725#7726#0" expanded="false" />
+            <element signature="e#7752#7753#0" expanded="false" />
+            <element signature="e#7792#7793#0" expanded="false" />
+            <element signature="e#7824#7825#0" expanded="false" />
+            <element signature="e#7863#7864#0" expanded="false" />
+            <element signature="e#7898#7899#0" expanded="false" />
+            <element signature="e#7954#7955#0" expanded="false" />
+            <element signature="e#8002#8003#0" expanded="false" />
+            <element signature="e#8034#8035#0" expanded="false" />
+            <element signature="e#8062#8063#0" expanded="false" />
+            <element signature="e#8104#8105#0" expanded="false" />
+            <element signature="e#8138#8139#0" expanded="false" />
+            <element signature="e#8170#8171#0" expanded="false" />
+            <element signature="e#8198#8199#0" expanded="false" />
+            <element signature="e#8240#8241#0" expanded="false" />
+            <element signature="e#8274#8275#0" expanded="false" />
+            <element signature="e#8310#8311#0" expanded="false" />
+            <element signature="e#8342#8343#0" expanded="false" />
+            <element signature="e#8392#8393#0" expanded="false" />
+            <element signature="e#8434#8435#0" expanded="false" />
+            <element signature="e#8470#8471#0" expanded="false" />
+            <element signature="e#8502#8503#0" expanded="false" />
+            <element signature="e#8552#8553#0" expanded="false" />
+            <element signature="e#8594#8595#0" expanded="false" />
+            <element signature="e#8622#8623#0" expanded="false" />
+            <element signature="e#8649#8650#0" expanded="false" />
+            <element signature="e#8686#8687#0" expanded="false" />
+            <element signature="e#8718#8719#0" expanded="false" />
+            <element signature="e#8747#8748#0" expanded="false" />
+            <element signature="e#8772#8773#0" expanded="false" />
+            <element signature="e#8808#8809#0" expanded="false" />
+            <element signature="e#8836#8837#0" expanded="false" />
+            <element signature="e#8866#8867#0" expanded="false" />
+            <element signature="e#8891#8892#0" expanded="false" />
+            <element signature="e#8928#8929#0" expanded="false" />
+            <element signature="e#8956#8957#0" expanded="false" />
+            <element signature="e#8995#8996#0" expanded="false" />
+            <element signature="e#9024#9025#0" expanded="false" />
+            <element signature="e#9074#9075#0" expanded="false" />
+            <element signature="e#9110#9111#0" expanded="false" />
+            <element signature="e#9146#9147#0" expanded="false" />
+            <element signature="e#9172#9173#0" expanded="false" />
+            <element signature="e#9216#9217#0" expanded="false" />
+            <element signature="e#9246#9247#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3019,31 +2886,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/MainNews.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4219859">
-          <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
-          <folding>
-            <element signature="e#3691#3692#0" expanded="true" />
-            <element signature="e#3721#3722#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/News.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3093,17 +2941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33595285">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_news_list_view.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -3142,10 +2979,10 @@
         <state vertical-scroll-proportion="0.7074468">
           <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
           <folding>
-            <element signature="method#initData#0;class#NewsContentActivity#0" expanded="true" />
-            <element signature="method#onSuccess#0;class#2574:2912" expanded="true" />
-            <element signature="method#onFailure#0;class#2574:2912" expanded="true" />
-            <element signature="method#processResult#0;class#NewsContentActivity#0" expanded="true" />
+            <element signature="method#initData#0;class#NewsContentActivity#0" expanded="false" />
+            <element signature="method#onSuccess#0;class#2574:2912" expanded="false" />
+            <element signature="method#onFailure#0;class#2574:2912" expanded="false" />
+            <element signature="method#processResult#0;class#NewsContentActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3219,10 +3056,35 @@
         <state vertical-scroll-proportion="0.59574467">
           <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="62" />
           <folding>
-            <element signature="method#initData#0;class#MainContentActivity#0" expanded="true" />
-            <element signature="method#onSuccess#0;class#3000:3339" expanded="true" />
-            <element signature="method#onFailure#0;class#3000:3339" expanded="true" />
-            <element signature="method#processResult#0;class#MainContentActivity#0" expanded="true" />
+            <element signature="method#initData#0;class#MainContentActivity#0" expanded="false" />
+            <element signature="method#onSuccess#0;class#3000:3339" expanded="false" />
+            <element signature="method#onFailure#0;class#3000:3339" expanded="false" />
+            <element signature="method#processResult#0;class#MainContentActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6968085">
+          <caret line="78" column="55" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+          <folding>
+            <element signature="method#NewsItemAdapter#0;class#NewsItemAdapter#0" expanded="false" />
+            <element signature="e#833#834#0" expanded="false" />
+            <element signature="e#880#881#0" expanded="false" />
+            <element signature="e#937#938#0" expanded="false" />
+            <element signature="e#991#992#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/utils/PrefUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13475177">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding>
+            <element signature="method#putString#0;class#PrefUtils#0" expanded="false" />
+            <element signature="method#getString#0;class#PrefUtils#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3244,46 +3106,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/utils/PrefUtils.java">
+    <entry file="jar://E:/EclipseForAndroid/Documents/sdk/platforms/android-23/android.jar!/android/widget/BaseAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="77" selection-start-line="67" selection-start-column="77" selection-end-line="67" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="282" column="60" selection-start-line="282" selection-start-column="20" selection-end-line="282" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.5564202">
+          <caret line="54" column="15" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
           <folding>
-            <element signature="e#2110#2496#0" expanded="true" />
-            <element signature="e#2495#2496#0" expanded="true" />
-            <element signature="method#initView#0;class#MainNewsFragment#0" expanded="true" />
-            <element signature="method#onSuccess#0;class#4021:4444" expanded="true" />
-            <element signature="method#onFailure#0;class#4021:4444" expanded="true" />
-            <element signature="method#onPageScrolled#0;class#5600:6332" expanded="true" />
-            <element signature="method#onPageSelected#0;class#5600:6332" expanded="true" />
-            <element signature="method#onPageScrollStateChanged#0;class#5600:6332" expanded="true" />
-            <element signature="e#6412#6553#0" expanded="true" />
-            <element signature="e#6552#6553#0" expanded="true" />
-            <element signature="e#6606#7149#0" expanded="true" />
-            <element signature="e#7148#7149#0" expanded="true" />
-            <element signature="method#onScrollStateChanged#0;class#7355:8110" expanded="true" />
-            <element signature="method#onScroll#0;class#7355:8110" expanded="true" />
-            <element signature="e#8154#9133#0" expanded="true" />
-            <element signature="e#9132#9133#0" expanded="true" />
-            <element signature="method#onSuccess#0;class#9449:9794" expanded="true" />
-            <element signature="method#onFailure#0;class#9449:9794" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/EclipseForAndroid/Documents/sdk/platforms/android-23/android.jar!/java/util/List.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33268481">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/bean/MainNews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30319148">
+          <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3298,18 +3144,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/NewsItemAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/gloable/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5283688">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.6400709">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/fragment/MainNewsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="282" column="93" selection-start-line="282" selection-start-column="93" selection-end-line="282" selection-end-column="93" />
           <folding>
-            <element signature="method#NewsItemAdapter#0;class#NewsItemAdapter#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="method#getView#0;class#NewsItemAdapter#0" expanded="true" />
+            <element signature="e#2118#2504#0" expanded="true" />
+            <element signature="e#2503#2504#0" expanded="true" />
+            <element signature="method#initView#0;class#MainNewsFragment#0" expanded="true" />
+            <element signature="method#onSuccess#0;class#4029:4452" expanded="true" />
+            <element signature="method#onFailure#0;class#4029:4452" expanded="true" />
+            <element signature="method#processResult#0;class#MainNewsFragment#0" expanded="true" />
+            <element signature="method#onPageScrolled#0;class#5832:6564" expanded="true" />
+            <element signature="method#onPageSelected#0;class#5832:6564" expanded="true" />
+            <element signature="method#onPageScrollStateChanged#0;class#5832:6564" expanded="true" />
+            <element signature="e#6644#6785#0" expanded="true" />
+            <element signature="e#6784#6785#0" expanded="true" />
+            <element signature="e#6838#7381#0" expanded="true" />
+            <element signature="e#7380#7381#0" expanded="true" />
+            <element signature="method#onScrollStateChanged#0;class#7587:8342" expanded="true" />
+            <element signature="method#onScroll#0;class#7587:8342" expanded="true" />
+            <element signature="e#8386#9366#0" expanded="true" />
+            <element signature="e#9365#9366#0" expanded="true" />
+            <element signature="method#loadMore#0;class#MainNewsFragment#0" expanded="true" />
+            <element signature="method#getBeforeDataFromServer#0;class#MainNewsFragment#0" expanded="true" />
+            <element signature="method#onSuccess#0;class#9682:10027" expanded="true" />
+            <element signature="method#onFailure#0;class#9682:10027" expanded="true" />
+            <element signature="method#processBeforeResult#0;class#MainNewsFragment#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/AlarmZeng/zhishi/activity/adapter/MainNewsItemAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="106" column="51" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
+          <folding>
+            <element signature="method#MainNewsItemAdapter#0;class#MainNewsItemAdapter#0" expanded="true" />
+            <element signature="method#addList#0;class#MainNewsItemAdapter#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1202#1203#0" expanded="true" />
+            <element signature="e#1260#1261#0" expanded="true" />
+            <element signature="e#1317#1318#0" expanded="true" />
+            <element signature="e#1348#1349#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_main_list_view.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33595285">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

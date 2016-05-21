@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
+import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -54,6 +55,19 @@ public class MainNewsItemAdapter extends BaseAdapter {
         return position;
     }
 
+    /*@Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        if (position == 0 ||)
+
+        return super.getItemViewType(position);
+    }*/
+
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
@@ -64,31 +78,49 @@ public class MainNewsItemAdapter extends BaseAdapter {
             view = View.inflate(context, R.layout.item_main_list_view, null);
 
             holder = new ViewHolder();
+            holder.title = (TextView) view.findViewById(R.id.tv_title);
             holder.content = (TextView) view.findViewById(R.id.tv_list_content);
             holder.image = (ImageView) view.findViewById(R.id.iv_list_image);
 
             view.setTag(holder);
 
-        }
-        else {
+        } else {
             view = convertView;
             holder = (ViewHolder) view.getTag();
         }
 
         MainNews.Stories stories = (MainNews.Stories) getItem(position);
 
-        holder.content.setText(stories.getTitle());
-
         String readId = PrefUtils.getString(context, "is_read", "");
-        if (readId.contains(stories.getId())) {
-            holder.content.setTextColor(Color.GRAY);
+
+        if (stories.getType() == Constants.MAIN_TOPIC) {
+
+            holder.title.setVisibility(View.VISIBLE);
+            holder.content.setVisibility(View.GONE);
+            holder.image.setVisibility(View.GONE);
+            holder.title.setText(stories.getTitle());
         }
-        utils.display(holder.image, stories.getImages().get(0));
+        else {
+
+            holder.title.setVisibility(View.GONE);
+            holder.content.setVisibility(View.VISIBLE);
+            holder.image.setVisibility(View.VISIBLE);
+            holder.content.setText(stories.getTitle());
+
+            if (readId.contains(stories.getId())) {
+                holder.content.setTextColor(Color.GRAY);
+            } else {
+                holder.content.setTextColor(Color.BLACK);
+            }
+            utils.display(holder.image, stories.getImages().get(0));
+        }
 
         return view;
     }
 
     class ViewHolder {
+
+        TextView title;
 
         TextView content;
 

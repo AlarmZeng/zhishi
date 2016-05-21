@@ -62,7 +62,7 @@ public class MainNewsFragment extends BaseFragment {
     private MainNewsItemAdapter newsItemAdapter;
 
     private String loadDate;
-    private boolean isLoading;
+    private boolean isLoading = false;
 
     private Timer timer = new Timer();
 
@@ -154,6 +154,12 @@ public class MainNewsFragment extends BaseFragment {
 
         Gson gson = new Gson();
         mainNews = gson.fromJson(result, MainNews.class);
+
+        List<MainNews.Stories> list = mainNews.getStories();
+        MainNews.Stories title = new MainNews.Stories();
+        title.setTitle("今日热闻");
+        title.setType(Constants.MAIN_TOPIC);
+        list.add(0, title);
 
         loadDate = mainNews.getDate();
         initViewPager();
@@ -272,6 +278,7 @@ public class MainNewsFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
+
                 int headerCount = listView.getHeaderViewsCount();
                 MainNews.Stories stories = mainNews.getStories().get(position - headerCount);
 
@@ -322,12 +329,6 @@ public class MainNewsFragment extends BaseFragment {
     }
 
     private void processBeforeResult(String result) {
-
-        /*if (TextUtils.isEmpty(result)) {
-            isLoading = false;
-            loadDate = mainNews.getDate();
-            return;
-        }*/
 
         Gson gson = new Gson();
         Before before = gson.fromJson(result, Before.class);
