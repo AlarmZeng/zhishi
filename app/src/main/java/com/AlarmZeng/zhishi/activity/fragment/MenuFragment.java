@@ -2,15 +2,19 @@ package com.AlarmZeng.zhishi.activity.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
+import com.AlarmZeng.zhishi.activity.MainActivity;
 import com.AlarmZeng.zhishi.activity.bean.MenuListItem;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
@@ -35,7 +39,10 @@ public class MenuFragment extends BaseFragment {
     private ListView mListView;
 
     private List<MenuListItem> mItemList;
+
     private MenuItemAdapter adapter;
+
+    private TextView firstPage;
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +50,50 @@ public class MenuFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_menu, null);
         View headerView = View.inflate(getActivity(), R.layout.fragment_menu_header, null);
 
+        firstPage = (TextView) headerView.findViewById(R.id.tv_first_page);
+
         mListView = (ListView) view.findViewById(R.id.lv_menu_list);
         mListView.addHeaderView(headerView);
+
+        firstPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fl_fragment_container, new MainNewsFragment());
+                //transaction.addToBackStack(null);
+                transaction.commit();
+
+                ((MainActivity) mActivity).setDrawerClose();
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                int headerCount = mListView.getHeaderViewsCount();
+                MenuListItem item = (MenuListItem) adapter.getItem(position - headerCount);
+                String itemId = item.getId();
+                String title = item.getName();
+
+                NewsFragment newsFragment = new NewsFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("itemId", itemId);
+                bundle.putString("title", title);
+                newsFragment.setArguments(bundle);
+
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fl_fragment_container, newsFragment);
+                //transaction.addToBackStack(null);
+                transaction.commit();
+
+                ((MainActivity) mActivity).setDrawerClose();
+            }
+        });
 
         return view;
     }

@@ -1,6 +1,7 @@
 package com.AlarmZeng.zhishi.activity.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
+import com.AlarmZeng.zhishi.activity.MainContentActivity;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -40,19 +42,33 @@ public class MainNewsPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         View view = View.inflate(context, R.layout.item_main_view_pager, null);
+
+        final MainNews.TopStories stories = mainNews.getTop_stories().get(position);
 
         TextView text = (TextView) view.findViewById(R.id.tv_top_title);
         ImageView image = (ImageView) view.findViewById(R.id.iv_top_image);
 
-        MainNews.TopStories stories = mainNews.getTop_stories().get(position);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                LogUtils.i("This page was Clicked ----------- position:" + position);
+
+                Intent mainContentIntent = new Intent(context, MainContentActivity.class);
+                mainContentIntent.putExtra("topStories", stories);
+                context.startActivity(mainContentIntent);
+            }
+        });
+
+
         text.setText(stories.getTitle());
 
         utils.display(image, stories.getImage());
 
-        container.addView(view);
+        container.addView(view, 0);
 
         return view;
     }

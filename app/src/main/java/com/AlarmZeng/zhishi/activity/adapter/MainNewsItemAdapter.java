@@ -76,7 +76,6 @@ public class MainNewsItemAdapter extends BaseAdapter {
         MainNews.Stories stories = (MainNews.Stories) getItem(position);
 
         holder.content.setText(stories.getTitle());
-
         utils.display(holder.image, stories.getImages().get(0));
 
         return view;

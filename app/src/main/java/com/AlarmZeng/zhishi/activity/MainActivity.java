@@ -3,6 +3,7 @@ package com.AlarmZeng.zhishi.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,12 +17,22 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout refresh;
 
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+//        toolbar.setNavigationIcon();
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         initView();
         initData();
@@ -40,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fl_fragment_container, fragment);
+        transaction.replace(R.id.fl_fragment_container, fragment);
+        //transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
     public void setSwipeRefreshEnable(boolean enable) {
@@ -52,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
     public SwipeRefreshLayout getRefresh() {
 
         return refresh;
+    }
+
+    public void setDrawerClose() {
+
+        drawer.closeDrawers();
+    }
+
+    public void setToolbarTitle(String title) {
+
+        toolbar.setTitle(title);
     }
 
     @Override

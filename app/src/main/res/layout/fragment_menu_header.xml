@@ -13,11 +13,13 @@
         android:background="@drawable/ic_account_circle_white_24dp" />
 
     <TextView
+        android:id="@+id/tv_first_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
         android:text="首页"
         android:clickable="true"
+        android:onClick="firstPage"
         android:padding="16dp"
         android:textSize="16sp"
         android:textColor="#000"/>

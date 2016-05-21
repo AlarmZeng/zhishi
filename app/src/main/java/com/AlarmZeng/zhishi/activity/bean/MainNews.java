@@ -117,7 +117,7 @@ public class MainNews {
         }
     }
 
-    public static class TopStories {
+    public static class TopStories implements Serializable{
         private String image;
         private int type;
         private String id;

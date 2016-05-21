@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorLightBlue"
                 android:theme="@style/MyActionBar"
-                android:titleTextColor="#fff"
+                app:titleTextColor="#fff"
                 app:popupTheme="@style/ToolbarPopupTheme"
                 android:minHeight="?attr/actionBarSize">
 

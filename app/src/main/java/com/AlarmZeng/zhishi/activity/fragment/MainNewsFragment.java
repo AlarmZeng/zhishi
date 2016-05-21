@@ -1,5 +1,6 @@
 package com.AlarmZeng.zhishi.activity.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -19,6 +21,7 @@ import android.widget.RelativeLayout;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
+import com.AlarmZeng.zhishi.activity.MainContentActivity;
 import com.AlarmZeng.zhishi.activity.adapter.MainNewsItemAdapter;
 import com.AlarmZeng.zhishi.activity.adapter.MainNewsPagerAdapter;
 import com.AlarmZeng.zhishi.activity.bean.Before;
@@ -33,6 +36,8 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by hunter_zeng on 2016/5/18.
@@ -57,6 +62,8 @@ public class MainNewsFragment extends BaseFragment {
     private String loadDate;
     private boolean isLoading;
 
+    private Timer timer = new Timer();
+
     Handler handler = new Handler() {
 
         @Override
@@ -64,18 +71,19 @@ public class MainNewsFragment extends BaseFragment {
 
             int current = viewPager.getCurrentItem();
 
-            current++;
+            current += 1;
 
-            if (current >= adapter.getCount()) {
+            if (current == adapter.getCount()) {
                 current = 0;
             }
 
-            viewPager.setCurrentItem(current);
+            viewPager.setCurrentItem(current, true);
 
-            handler.sendEmptyMessageDelayed(0, 4000);
+            //handler.sendEmptyMessageDelayed(0, 4000);
         }
 
     };
+
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,14 +98,14 @@ public class MainNewsFragment extends BaseFragment {
 
         listView.addHeaderView(headerView);
 
+        ((MainActivity) mActivity).setToolbarTitle("知事");
+
         final SwipeRefreshLayout refresh = ((MainActivity) mActivity).getRefresh();
 
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-               /* MainNewsFragment mainNewsFragment = new MainNewsFragment();
-                mainNewsFragment.setRefresh();*/
                 getDataFromServer();
 
                 refresh.setRefreshing(false);
@@ -198,7 +206,15 @@ public class MainNewsFragment extends BaseFragment {
             }
         });
 
-        handler.sendEmptyMessageDelayed(0, 4000);
+//        handler.sendEmptyMessageDelayed(0, 4000);
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                handler.sendEmptyMessage(0);
+            }
+        }, 5000, 5000);
 
         viewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -219,6 +235,7 @@ public class MainNewsFragment extends BaseFragment {
                 return false;
             }
         });
+
     }
 
     private void initListView() {
@@ -246,6 +263,19 @@ public class MainNewsFragment extends BaseFragment {
 
                     loadMore();
                 }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                int headerCount = listView.getHeaderViewsCount();
+                MainNews.Stories stories = mainNews.getStories().get(position - headerCount);
+                Intent mainContentIntent = new Intent(mActivity, MainContentActivity.class);
+                mainContentIntent.putExtra("stories", stories);
+                startActivity(mainContentIntent);
+
             }
         });
     }
@@ -297,10 +327,5 @@ public class MainNewsFragment extends BaseFragment {
 
         isLoading = false;
 
-    }
-
-    public void setRefresh() {
-
-        //getDataFromServer();
     }
 }
