@@ -278,23 +278,23 @@ public class MainNewsFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-
                 int headerCount = listView.getHeaderViewsCount();
                 MainNews.Stories stories = mainNews.getStories().get(position - headerCount);
 
-                String readId = PrefUtils.getString(mActivity, "is_read", "");
-                TextView tvTitle = (TextView) view.findViewById(R.id.tv_list_content);
-                tvTitle.setTextColor(Color.GRAY);
-                if (!readId.contains(stories.getId())){
+                if (stories.getType() != Constants.MAIN_TOPIC) {
+                    String readId = PrefUtils.getString(mActivity, "is_read", "");
+                    TextView tvTitle = (TextView) view.findViewById(R.id.tv_list_content);
+                    tvTitle.setTextColor(Color.GRAY);
+                    if (!readId.contains(stories.getId())) {
 
-                    readId = readId + "," + stories.getId();
-                    PrefUtils.putString(mActivity, "is_read", readId);
+                        readId = readId + "," + stories.getId();
+                        PrefUtils.putString(mActivity, "is_read", readId);
+                    }
+
+                    Intent mainContentIntent = new Intent(mActivity, MainContentActivity.class);
+                    mainContentIntent.putExtra("stories", stories);
+                    startActivity(mainContentIntent);
                 }
-
-                Intent mainContentIntent = new Intent(mActivity, MainContentActivity.class);
-                mainContentIntent.putExtra("stories", stories);
-                startActivity(mainContentIntent);
-
             }
         });
     }
@@ -336,9 +336,72 @@ public class MainNewsFragment extends BaseFragment {
         loadDate = before.getDate();
 
         List<MainNews.Stories> stories = before.getStories();
+        MainNews.Stories title = new MainNews.Stories();
+        String fd = formatDay(before.getDate());
+        title.setTitle(fd);
+        title.setType(Constants.MAIN_TOPIC);
+        stories.add(0, title);
+
         newsItemAdapter.addList(stories);
 
         isLoading = false;
 
     }
+
+    private String formatDay(String day) {
+
+        int y = Integer.parseInt(day.substring(0, 4));
+        int m = Integer.parseInt(day.substring(4, 6));
+        int d = Integer.parseInt(day.substring(6, 8));
+
+        if (m == 1) {
+            m = 13;
+        }
+
+        if (m == 2) {
+            m = 14;
+        }
+
+        int week = (d + 2 * m + 3 * (m + 1) / 5 + y + y / 4 - y / 100 + y / 400) % 7;
+
+        String fDay = "";
+
+        switch (week) {
+
+            case 1 :
+                fDay = m + "月" + d + "日" + "  " + "星期二";
+                break;
+
+            case 2 :
+                fDay = m + "月" + d + "日" + "  " + "星期三";
+                break;
+
+            case 3 :
+                fDay = m + "月" + d + "日" + "  " + "星期四";
+                break;
+
+            case 4 :
+                fDay = m + "月" + d + "日" + "  " + "星期五";
+                break;
+
+            case 5 :
+                fDay = m + "月" + d + "日" + "  " + "星期六";
+                break;
+
+            case 6 :
+                fDay = m + "月" + d + "日" + "  " + "星期日";
+                break;
+
+            case 7 :
+                fDay = m + "月" + d + "日" + "  " + "星期一";
+                break;
+        }
+
+        return fDay;
+    }
+
+    /*public void UpdateBackgroundMode() {
+
+        newsItemAdapter.UpdateBackgroundMode();
+    }*/
 }

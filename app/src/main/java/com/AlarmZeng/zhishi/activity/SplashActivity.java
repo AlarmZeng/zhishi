@@ -50,12 +50,14 @@ public class SplashActivity extends Activity {
 
         if (!TextUtils.isEmpty(result)) {
             processResult(result);
-        }
-        else {
+        } else {
             mSplashImage.setImageResource(R.drawable.splash_image);
             initAnimation();
         }
 
+        if (NetWorkUtils.isNetworkConnected(SplashActivity.this)) {
+            getDataFromServer();
+        }
     }
 
     private void getDataFromServer() {
@@ -66,8 +68,6 @@ public class SplashActivity extends Activity {
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
                 String result = responseInfo.result;
-
-                processResult(result);
 
                 PrefUtils.putString(SplashActivity.this, Constants.SPLASH_URL, result);
             }
@@ -119,9 +119,6 @@ public class SplashActivity extends Activity {
                 if (!NetWorkUtils.isNetworkConnected(SplashActivity.this)) {
                     Toast.makeText(SplashActivity.this, "网络没有连接", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    getDataFromServer();
-                }
 
                 Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(mainIntent);
@@ -137,7 +134,6 @@ public class SplashActivity extends Activity {
         });
 
         mSplashImage.startAnimation(scale);
-
     }
 
 }

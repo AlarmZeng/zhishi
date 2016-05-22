@@ -43,6 +43,7 @@ public class NewsFragment extends BaseFragment{
 
     private String title;
     private News news;
+    private NewsItemAdapter adapter;
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class NewsFragment extends BaseFragment{
 
         newsTitle.setText(news.getDescription());
 
-        NewsItemAdapter adapter = new NewsItemAdapter(mActivity, news);
+        adapter = new NewsItemAdapter(mActivity, news);
         newsListView.setAdapter(adapter);
 
         newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -147,5 +148,10 @@ public class NewsFragment extends BaseFragment{
             }
         });
     }
+
+    /*public void updateBackGroundMode() {
+
+        adapter.updateBackGroudMode();
+    }*/
 
 }

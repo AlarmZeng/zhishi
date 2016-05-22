@@ -24,6 +24,8 @@ public class NewsItemAdapter extends BaseAdapter {
 
     private BitmapUtils utils;
 
+    private boolean isDark;
+
     public NewsItemAdapter(Context context, News news) {
 
         utils = new BitmapUtils(context);
@@ -84,11 +86,17 @@ public class NewsItemAdapter extends BaseAdapter {
             utils.display(holder.newsImage, stories.getImages().get(0));
         }
         else {
-            holder.newsImage.setVisibility(View.INVISIBLE);
+            holder.newsImage.setVisibility(View.GONE);
         }
 
         return view;
     }
+
+    /*public void updateBackGroudMode() {
+
+        isDark = ((MainActivity) context).isDark;
+        notifyDataSetChanged();
+    }*/
 
     class ViewHolder {
 

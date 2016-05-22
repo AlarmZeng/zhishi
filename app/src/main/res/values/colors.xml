@@ -6,4 +6,12 @@
     <color name="colorLightBlue">#4585F3</color>
     <color name="itemChecked" >#efefef</color>
     <color name="itemDefault">#ffffff</color>
+
+    <!--设置夜间模式的颜色-->
+    <color name="colorToolbarDark">#232123</color>
+    <color name="colorDrawerLayoutDark">#343334</color>
+    <color name="colorDrawerLayoutLight">#fff0f0f0</color>
+    <color name="colorListItemDark">#413F41</color>
+    <color name="colorMenuHeaderDark">#262526</color>
+    <color name="colorMenuListDark">#343334</color>
 </resources>

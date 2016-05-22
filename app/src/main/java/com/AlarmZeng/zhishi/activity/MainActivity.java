@@ -1,6 +1,5 @@
 package com.AlarmZeng.zhishi.activity;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private AnimationDrawable drawable;
+
+    public boolean isDark = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawers();
-                }
-                else {
+                } else {
                     drawerLayout.openDrawer(Gravity.LEFT);
                 }
 
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
 
         refresh = (SwipeRefreshLayout) findViewById(R.id.srl_swipe_refresh);
-        refresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_blue_light,android.R.color.holo_blue_light,android.R.color.holo_blue_light);
+        refresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_blue_light, android.R.color.holo_blue_light, android.R.color.holo_blue_light);
 
     }
 
@@ -71,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fl_fragment_container, fragment);
-        //transaction.addToBackStack(null);
+        transaction.add(R.id.fl_fragment_container, fragment, "mainNews");
         transaction.commit();
 
     }
@@ -106,14 +104,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.action_dark:
+                /*drawerLayout.setBackgroundResource(isDark ? R.color.colorDrawerLayoutLight : R.color.colorDrawerLayoutDark);
+                toolbar.setBackgroundResource(isDark ? R.color.colorLightBlue : R.color.colorToolbarDark);
+                item.setTitle(!isDark ? "日间模式" : "夜间模式");
+                ((MenuFragment) getSupportFragmentManager().findFragmentById(R.id.menu_fragment)).updateBackgroundMode();
+
+                if (getSupportFragmentManager().findFragmentByTag("mainNews") !=null) {
+
+                    ((MainNewsFragment) getSupportFragmentManager().findFragmentByTag("mainNews")).UpdateBackgroundMode();
+                }
+                else {
+
+                    ((NewsFragment) getSupportFragmentManager().findFragmentByTag("news")).updateBackGroundMode();
+                }
+
+                isDark = !isDark;*/
+                break;
+
+            case R.id.action_settings:
+
+
+
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

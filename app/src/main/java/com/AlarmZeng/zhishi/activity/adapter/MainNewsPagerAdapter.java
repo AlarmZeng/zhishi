@@ -55,8 +55,6 @@ public class MainNewsPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
 
-//                LogUtils.i("This page was Clicked ----------- position:" + position);
-
                 Intent mainContentIntent = new Intent(context, MainContentActivity.class);
                 mainContentIntent.putExtra("topStories", stories);
                 context.startActivity(mainContentIntent);

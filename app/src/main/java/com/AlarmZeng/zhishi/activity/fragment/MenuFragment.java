@@ -1,5 +1,6 @@
 package com.AlarmZeng.zhishi.activity.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -44,13 +45,17 @@ public class MenuFragment extends BaseFragment {
 
     private TextView firstPage;
 
+    private int itemChecked = -1;
+    private View headerView;
+
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_menu, null);
-        View headerView = View.inflate(getActivity(), R.layout.fragment_menu_header, null);
+        headerView = inflater.inflate(R.layout.fragment_menu_header, null);
 
         firstPage = (TextView) headerView.findViewById(R.id.tv_first_page);
+        firstPage.setBackgroundColor(getResources().getColor(R.color.itemChecked));
 
         mListView = (ListView) view.findViewById(R.id.lv_menu_list);
         mListView.addHeaderView(headerView);
@@ -59,10 +64,14 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
 
+                firstPage.setBackgroundColor(getResources().getColor(R.color.itemChecked));
+
+                itemChecked = -1;
+                adapter.notifyDataSetChanged();
+
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fl_fragment_container, new MainNewsFragment());
-                //transaction.addToBackStack(null);
                 transaction.commit();
 
                 ((MainActivity) mActivity).setDrawerClose();
@@ -74,22 +83,28 @@ public class MenuFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 int headerCount = mListView.getHeaderViewsCount();
-                MenuListItem item = (MenuListItem) adapter.getItem(position - headerCount);
-                String itemId = item.getId();
-                String title = item.getName();
 
-                NewsFragment newsFragment = new NewsFragment();
+                firstPage.setBackgroundColor(Color.WHITE);
+                itemChecked = position - headerCount;
+                adapter.notifyDataSetChanged();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("itemId", itemId);
-                bundle.putString("title", title);
-                newsFragment.setArguments(bundle);
+                if (position >= headerCount) {
+                    MenuListItem item = (MenuListItem) adapter.getItem(position - headerCount);
+                    String itemId = item.getId();
+                    String title = item.getName();
 
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fl_fragment_container, newsFragment);
-                //transaction.addToBackStack(null);
-                transaction.commit();
+                    NewsFragment newsFragment = new NewsFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("itemId", itemId);
+                    bundle.putString("title", title);
+                    newsFragment.setArguments(bundle);
+
+                    FragmentManager manager = getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.fl_fragment_container, newsFragment, "news");
+                    transaction.commit();
+                }
 
                 ((MainActivity) mActivity).setDrawerClose();
             }
@@ -102,11 +117,19 @@ public class MenuFragment extends BaseFragment {
     protected void initData() {
 
         String result = PrefUtils.getString(mActivity, Constants.MENU_LIST_RUL, null);
-        if(!TextUtils.isEmpty(result)) {
+        if (!TextUtils.isEmpty(result)) {
             processResult(result);
         }
 
         getDataFromServer();
+    }
+
+    public void updateBackgroundMode() {
+
+        boolean isDark = ((MainActivity) mActivity).isDark;
+        headerView.setBackgroundResource(isDark ? R.color.colorLightBlue : R.color.colorMenuHeaderDark);
+        firstPage.setBackgroundColor(isDark ? Color.WHITE : getResources().getColor(R.color.colorMenuListDark));
+        adapter.updateBackgroundMode();
     }
 
     private void getDataFromServer() {
@@ -164,6 +187,8 @@ public class MenuFragment extends BaseFragment {
 
     class MenuItemAdapter extends BaseAdapter {
 
+        private boolean isDark = true;
+
         @Override
         public int getCount() {
             return mItemList.size();
@@ -185,9 +210,16 @@ public class MenuFragment extends BaseFragment {
             View view;
             if (convertView == null) {
                 view = View.inflate(getActivity(), R.layout.item_menu_list, null);
-            }
-            else {
+            } else {
                 view = convertView;
+            }
+
+            view.setBackgroundResource(isDark ? R.drawable.menu_list_selector : R.color.colorMenuListDark);
+
+            if (itemChecked == position) {
+                view.setEnabled(true);
+            } else {
+                view.setEnabled(false);
             }
 
             MenuListItem item = (MenuListItem) getItem(position);
@@ -196,6 +228,12 @@ public class MenuFragment extends BaseFragment {
             title.setText(item.getName());
 
             return view;
+        }
+
+        public void updateBackgroundMode() {
+
+            isDark = ((MainActivity) mActivity).isDark;
+            notifyDataSetChanged();
         }
     }
 

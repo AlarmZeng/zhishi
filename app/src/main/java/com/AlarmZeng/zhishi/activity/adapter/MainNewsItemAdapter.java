@@ -27,6 +27,8 @@ public class MainNewsItemAdapter extends BaseAdapter {
 
     private BitmapUtils utils;
 
+    private boolean isDark = true;
+
     public MainNewsItemAdapter(Context context, MainNews pageData) {
 
         this.context = context;
@@ -55,19 +57,6 @@ public class MainNewsItemAdapter extends BaseAdapter {
         return position;
     }
 
-    /*@Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-
-        if (position == 0 ||)
-
-        return super.getItemViewType(position);
-    }*/
-
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
@@ -89,19 +78,20 @@ public class MainNewsItemAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
+        //view.setBackgroundResource(isDark ? R.drawable.card_background_selector : R.color.colorListItemDark);
+
         MainNews.Stories stories = (MainNews.Stories) getItem(position);
 
         String readId = PrefUtils.getString(context, "is_read", "");
 
         if (stories.getType() == Constants.MAIN_TOPIC) {
-
             holder.title.setVisibility(View.VISIBLE);
-            holder.content.setVisibility(View.GONE);
-            holder.image.setVisibility(View.GONE);
+            view.findViewById(R.id.ll_main_list_content).setVisibility(View.GONE);
             holder.title.setText(stories.getTitle());
         }
         else {
 
+            view.findViewById(R.id.ll_main_list_content).setBackgroundResource(isDark ? R.drawable.card_background_selector : R.color.colorListItemDark);
             holder.title.setVisibility(View.GONE);
             holder.content.setVisibility(View.VISIBLE);
             holder.image.setVisibility(View.VISIBLE);
@@ -117,6 +107,12 @@ public class MainNewsItemAdapter extends BaseAdapter {
 
         return view;
     }
+
+    /*public void UpdateBackgroundMode() {
+
+        isDark = ((MainActivity) context).isDark;
+        notifyDataSetChanged();
+    }*/
 
     class ViewHolder {
 
