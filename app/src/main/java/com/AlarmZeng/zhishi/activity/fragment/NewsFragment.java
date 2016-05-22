@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class NewsFragment extends BaseFragment{
 
     @Override
     protected void initData() {
+
         Bundle bundle = getArguments();
 
         itemId = bundle.getString("itemId");
@@ -69,12 +71,18 @@ public class NewsFragment extends BaseFragment{
 
         ((MainActivity) mActivity).setToolbarTitle(title);
 
+        String result = PrefUtils.getString(mActivity, Constants.MENU_NEWS_URL + itemId, "");
+
+        if (!TextUtils.isEmpty(result)) {
+            processResult(result);
+        }
+        
         getNewsDateFromServer(itemId);
     }
 
     private void getNewsDateFromServer(String itemId) {
 
-        String url = Constants.MENU_NEWS_URL + itemId;
+        final String url = Constants.MENU_NEWS_URL + itemId;
 
         HttpUtils utils = new HttpUtils();
         utils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
@@ -83,6 +91,7 @@ public class NewsFragment extends BaseFragment{
 
                 String result = responseInfo.result;
 
+                PrefUtils.putString(mActivity, url, result);
                 processResult(result);
             }
 

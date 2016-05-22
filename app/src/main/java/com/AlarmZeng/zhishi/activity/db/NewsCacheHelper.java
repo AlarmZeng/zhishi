@@ -7,24 +7,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by hunter_zeng on 2016/5/22.
  */
-public class WebCacheHelper extends SQLiteOpenHelper {
+public class NewsCacheHelper extends SQLiteOpenHelper {
 
-    private static WebCacheHelper instance;
+    private static NewsCacheHelper instance;
 
-    private static final String WEB_CACHE_TABLE = "create table web_cache (_id integer primary key autoincrement," +
-            "newsId integer," +
+    private static final String NEWS_CACHE_TABLE = "create table news_cache (_id integer primary key autoincrement," +
+            "newsUrl text," +
             "json text)";
 
-    private WebCacheHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private NewsCacheHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    public static WebCacheHelper getInstance(Context context, int version) {
+    public NewsCacheHelper getInstance(Context context, int version) {
 
         if (instance == null) {
-            synchronized (WebCacheHelper.class) {
+            synchronized (NewsCacheHelper.class) {
                 if (instance == null) {
-                    instance = new WebCacheHelper(context, "webCache.db", null, version);
+                    instance = new NewsCacheHelper(context, "newsCache.db", null, version);
                 }
             }
         }
@@ -35,7 +35,7 @@ public class WebCacheHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL(WEB_CACHE_TABLE);
+        sqLiteDatabase.execSQL(NEWS_CACHE_TABLE);
     }
 
     @Override

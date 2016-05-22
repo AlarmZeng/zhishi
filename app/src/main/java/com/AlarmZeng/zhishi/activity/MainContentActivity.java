@@ -1,5 +1,8 @@
 package com.AlarmZeng.zhishi.activity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.Content;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
+import com.AlarmZeng.zhishi.activity.db.WebCacheHelper;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -36,6 +40,7 @@ public class MainContentActivity extends AppCompatActivity {
     private CollapsingToolbarLayout toolbarLayout;
     private MainNews.TopStories topStories;
     private MainNews.Stories stories;
+    private WebCacheHelper helper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +58,7 @@ public class MainContentActivity extends AppCompatActivity {
 
         if (topStories != null) {
             toolbarLayout.setTitle(topStories.getTitle());
-        }
-        else {
+        } else {
             toolbarLayout.setTitle(stories.getTitle());
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -73,35 +77,62 @@ public class MainContentActivity extends AppCompatActivity {
         settings.setDatabaseEnabled(true);
         settings.setAppCacheEnabled(true);
 
+        helper = WebCacheHelper.getInstance(MainContentActivity.this, 1);
+
         initData();
 
     }
 
     private void initData() {
 
+        SQLiteDatabase db = helper.getWritableDatabase();
+
         String url;
+        Cursor cursor;
         if (topStories != null) {
             url = Constants.CONTENT_URL + topStories.getId();
-        }
-        else {
+            cursor = db.query("web_cache", new String[]{"json"}, "newsId = ?", new String[]{topStories.getId()}, null, null, null);
+        } else {
             url = Constants.CONTENT_URL + stories.getId();
+            cursor = db.query("web_cache", new String[]{"json"}, "newsId = ?", new String[]{stories.getId()}, null, null, null);
         }
 
-        HttpUtils utils = new HttpUtils();
-        utils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-
-                String result = responseInfo.result;
-
-                processResult(result);
+        if (cursor.moveToFirst()) {
+            do {
+                String json = cursor.getString(cursor.getColumnIndex("json"));
+                processResult(json);
             }
+            while (cursor.moveToNext());
+        } else {
+            HttpUtils utils = new HttpUtils();
+            utils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
 
-            @Override
-            public void onFailure(HttpException e, String s) {
+                    String result = responseInfo.result;
+                    result = result.replaceAll("'", "''");
 
-            }
-        });
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    if (topStories != null) {
+                        values.put("newsId", topStories.getId());
+                    } else {
+                        values.put("newsId", stories.getId());
+                    }
+                    values.put("json", result);
+                    db.insert("web_cache", null, values);
+                    db.close();
+
+                    processResult(result);
+                }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+
+                }
+            });
+        }
+        cursor.close();
     }
 
     private void processResult(String result) {

@@ -1,5 +1,8 @@
 package com.AlarmZeng.zhishi.activity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.bean.Content;
 import com.AlarmZeng.zhishi.activity.bean.News;
+import com.AlarmZeng.zhishi.activity.db.WebCacheHelper;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -35,6 +39,7 @@ public class NewsContentActivity extends AppCompatActivity {
 
     private WebView webView;
     private News.NewsStories newsStories;
+    private WebCacheHelper helper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,25 +72,48 @@ public class NewsContentActivity extends AppCompatActivity {
         settings.setAppCacheEnabled(true);
         settings.setDomStorageEnabled(true);
 
+        helper = WebCacheHelper.getInstance(NewsContentActivity.this, 1);
+
         initData();
     }
 
     private void initData() {
 
-        HttpUtils utils = new HttpUtils();
-        utils.send(HttpRequest.HttpMethod.GET, Constants.CONTENT_URL + newsStories.getId(), new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
+        SQLiteDatabase db = helper.getWritableDatabase();
 
-                String result = responseInfo.result;
-                processResult(result);
-            }
+        Cursor cursor = db.query("web_cache", new String[] {"json"}, "newsId = ?", new String[] {newsStories.getId()}, null, null, null);
+        if (cursor.moveToFirst()) {
 
-            @Override
-            public void onFailure(HttpException e, String s) {
+            do {
+                String json = cursor.getString(cursor.getColumnIndex("json"));
+                processResult(json);
+            }while(cursor.moveToNext());
+        }
+        else {
+            HttpUtils utils = new HttpUtils();
+            utils.send(HttpRequest.HttpMethod.GET, Constants.CONTENT_URL + newsStories.getId(), new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
 
-            }
-        });
+                    String result = responseInfo.result;
+                    result = result.replaceAll("'", "''");
+
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("newsId", newsStories.getId());
+                    values.put("json", result);
+                    db.insert("web_cache", null, values);
+                    db.close();
+
+                    processResult(result);
+                }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+
+                }
+            });
+        }
     }
 
     private void processResult(String result) {
