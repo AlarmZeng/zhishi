@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
@@ -38,8 +37,8 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import pers.medusa.circleindicator.widget.CircleIndicator;
 
 /**
  * Created by hunter_zeng on 2016/5/18.
@@ -64,28 +63,9 @@ public class MainNewsFragment extends BaseFragment {
     private String loadDate;
     private boolean isLoading = false;
 
-    private Timer timer = new Timer();
+    private CircleIndicator indicator;
 
-    Handler handler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-
-            int current = viewPager.getCurrentItem();
-
-            current += 1;
-
-            if (current == adapter.getCount()) {
-                current = 0;
-            }
-
-            viewPager.setCurrentItem(current, true);
-
-            //handler.sendEmptyMessageDelayed(0, 4000);
-        }
-
-    };
-
+    private Handler handler = null;
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,8 +75,9 @@ public class MainNewsFragment extends BaseFragment {
 
         View headerView = View.inflate(mActivity, R.layout.fragment_main_news_header, null);
         viewPager = (ViewPager) headerView.findViewById(R.id.vp_first_view_pager);
-        llContainer = (LinearLayout) headerView.findViewById(R.id.ll_container);
-        ivRedPoint = (ImageView) headerView.findViewById(R.id.iv_red_point);
+//        llContainer = (LinearLayout) headerView.findViewById(R.id.ll_container);
+//        ivRedPoint = (ImageView) headerView.findViewById(R.id.iv_red_point);
+        indicator = (CircleIndicator) headerView.findViewById(R.id.indicator);
 
         listView.addHeaderView(headerView);
 
@@ -168,7 +149,7 @@ public class MainNewsFragment extends BaseFragment {
 
     private void initViewPager() {
 
-        if (!mIsPaint) {
+        /*if (!mIsPaint) {
             for (int i = 0; i < mainNews.getTop_stories().size(); i++) {
 
                 ImageView point = new ImageView(mActivity);
@@ -185,12 +166,16 @@ public class MainNewsFragment extends BaseFragment {
             }
 
             mIsPaint = true;
+        }*/
+
+        if (adapter == null) {
+            adapter = new MainNewsPagerAdapter(mActivity, mainNews);
+            viewPager.setAdapter(adapter);
+
+            indicator.setViewPager(viewPager);
         }
 
-        adapter = new MainNewsPagerAdapter(mActivity, mainNews);
-        viewPager.setAdapter(adapter);
-
-        pointWidth = llContainer.getChildAt(1).getLeft() - llContainer.getChildAt(0).getLeft();
+        /*pointWidth = llContainer.getChildAt(1).getLeft() - llContainer.getChildAt(0).getLeft();
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -203,6 +188,7 @@ public class MainNewsFragment extends BaseFragment {
                 params.leftMargin = leftMargin;
 
                 ivRedPoint.setLayoutParams(params);
+
             }
 
             @Override
@@ -212,37 +198,55 @@ public class MainNewsFragment extends BaseFragment {
             @Override
             public void onPageScrollStateChanged(int state) {
             }
-        });
+        });*/
 
-//        handler.sendEmptyMessageDelayed(0, 4000);
+        if (handler == null) {
 
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
+            handler = new Handler() {
 
-                handler.sendEmptyMessage(0);
-            }
-        }, 5000, 5000);
+                @Override
+                public void handleMessage(Message msg) {
 
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int current = viewPager.getCurrentItem();
 
-                switch (motionEvent.getAction()) {
+                    current += 1;
 
-                    case MotionEvent.ACTION_DOWN:
-                        handler.removeCallbacksAndMessages(null);
-                        break;
+                    if (current == adapter.getCount()) {
+                        current = 0;
+                    }
 
-                    case MotionEvent.ACTION_UP:
-                        handler.sendEmptyMessageDelayed(0, 4000);
-                        break;
+                    viewPager.setCurrentItem(current, true);
 
+                    handler.sendEmptyMessageDelayed(0, 4000);
                 }
 
-                return false;
-            }
-        });
+            };
+
+            handler.sendEmptyMessageDelayed(0, 4000);
+
+            viewPager.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                    switch (motionEvent.getAction()) {
+
+                        case MotionEvent.ACTION_DOWN:
+                            ((MainActivity) mActivity).setSwipeRefreshEnable(false);
+                            //handler.removeCallbacksAndMessages(null);
+                            break;
+
+                        case MotionEvent.ACTION_CANCEL:
+                        case MotionEvent.ACTION_UP:
+                            ((MainActivity) mActivity).setSwipeRefreshEnable(true);
+                            //handler.sendEmptyMessageDelayed(0, 4000);
+                            break;
+
+                    }
+
+                    return false;
+                }
+            });
+        }
 
     }
 

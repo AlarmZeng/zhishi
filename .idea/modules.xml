@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/indicator/indicator.iml" filepath="$PROJECT_DIR$/indicator/indicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/zhishi.iml" filepath="$PROJECT_DIR$/zhishi.iml" />
     </modules>
   </component>
