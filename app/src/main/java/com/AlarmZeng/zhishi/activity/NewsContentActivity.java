@@ -18,6 +18,7 @@ import com.AlarmZeng.zhishi.activity.bean.Content;
 import com.AlarmZeng.zhishi.activity.bean.News;
 import com.AlarmZeng.zhishi.activity.db.WebCacheHelper;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -37,7 +38,7 @@ public class NewsContentActivity extends AppCompatActivity {
 
     private ImageView image;
 
-    private WebView webView;
+    private static WebView webView;
     private News.NewsStories newsStories;
     private WebCacheHelper helper;
 
@@ -65,12 +66,15 @@ public class NewsContentActivity extends AppCompatActivity {
             }
         });
 
+        boolean isFirstChecked = PrefUtils.getBoolean(NewsContentActivity.this, "firstChecked", false);
+
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDatabaseEnabled(true);
         settings.setAppCacheEnabled(true);
         settings.setDomStorageEnabled(true);
+        settings.setTextSize(isFirstChecked ? WebSettings.TextSize.LARGER : WebSettings.TextSize.NORMAL);
 
         helper = WebCacheHelper.getInstance(NewsContentActivity.this, 1);
 
@@ -127,6 +131,11 @@ public class NewsContentActivity extends AppCompatActivity {
         String html = "<HTML><HEAD><LINK href=\"news.css\" type=\"text/css\" rel=\"stylesheet\"/></HEAD><body>" + content.getBody() + "</body></HTML>";
         html = html.replace("<div class=\"img-place-holder\">", "");
         webView.loadDataWithBaseURL("file:///android_asset/", html, "text/html", "utf-8", null);
+    }
+
+    public static WebView getWebView() {
+
+        return webView;
     }
 
     @Override

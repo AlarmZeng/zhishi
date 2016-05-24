@@ -20,4 +20,17 @@ public class PrefUtils {
 
         return pref.getString(key, def);
     }
+
+    public static void putBoolean(Context context, String key, boolean value) {
+
+        SharedPreferences pref = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        pref.edit().putBoolean(key, value).apply();
+    }
+
+    public static boolean getBoolean(Context context, String key, boolean def) {
+
+        SharedPreferences pref = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+
+        return pref.getBoolean(key, def);
+    }
 }

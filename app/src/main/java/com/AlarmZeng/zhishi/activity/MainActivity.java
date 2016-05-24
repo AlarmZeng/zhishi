@@ -1,6 +1,9 @@
 package com.AlarmZeng.zhishi.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     public boolean isDark = false;
+    private long firstClick;
+    private CoordinatorLayout snackContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        snackContainer = (CoordinatorLayout) findViewById(R.id.snack_bar_container);
 
         DrawerArrowDrawable arrowDrawable = new DrawerArrowDrawable(MainActivity.this);
         toolbar.setNavigationIcon(arrowDrawable);
@@ -127,11 +133,37 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_settings:
 
+                Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(settingIntent);
 
-
-                return true;
+               break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+
+            setDrawerClose();
+        }
+        else {
+
+            Snackbar sb = Snackbar.make(snackContainer, "再按一次退出", Snackbar.LENGTH_SHORT);
+            sb.getView().setBackgroundResource(R.color.colorLightBlue);
+            sb.show();
+
+            if (firstClick > 0) {
+                if (System.currentTimeMillis() - firstClick < 1500) {
+                    super.onBackPressed();
+                    firstClick = 0;
+                }
+            }
+
+            firstClick = System.currentTimeMillis();
+        }
+
     }
 }

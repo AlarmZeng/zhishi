@@ -18,8 +18,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="MyActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+    <style name="MyActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="android:textColor">@android:color/white</item>
+        <item name="actionMenuTextColor">@color/itemDefault</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
     <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat">

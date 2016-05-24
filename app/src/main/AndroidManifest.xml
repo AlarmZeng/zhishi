@@ -34,6 +34,11 @@
         <activity android:name=".activity.NewsContentActivity" >
 
         </activity>
+
+        <activity android:name=".activity.SettingActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

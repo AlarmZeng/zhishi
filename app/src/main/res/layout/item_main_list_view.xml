@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -8,9 +8,9 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="14dp"
-        android:layout_marginBottom="4dp"
         android:textColor="#8F8E8F"
         android:textSize="16sp"
         android:visibility="gone" />
@@ -19,11 +19,11 @@
         android:id="@+id/ll_main_list_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/card_background_selector"
-        android:orientation="horizontal"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/card_background_selector"
+        android:orientation="horizontal"
         android:paddingLeft="8dp"
         android:paddingRight="8dp">
 
@@ -35,7 +35,6 @@
             android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:maxLines="3"
-            android:text="复仇者联盟那么多的东西这些经济损失了有事的好坏佛啊回复"
             android:textColor="#000000"
             android:textSize="18sp" />
 

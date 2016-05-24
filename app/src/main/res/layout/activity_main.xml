@@ -2,43 +2,53 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
-    android:background="#fff0f0f0"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff0f0f0">
 
+    <!-- 主页面布局 -->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorLightBlue"
-                android:theme="@style/MyActionBar"
-                app:titleTextColor="#fff"
+                android:minHeight="?attr/actionBarSize"
                 app:popupTheme="@style/ToolbarPopupTheme"
-                android:minHeight="?attr/actionBarSize">
+                app:theme="@style/MyActionBar"
+                app:titleTextColor="#fff">
 
             </android.support.v7.widget.Toolbar>
 
             <FrameLayout
                 android:id="@+id/fl_fragment_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar">
 
             </FrameLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/snack_bar_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+            </android.support.design.widget.CoordinatorLayout>
+
+        </RelativeLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <!-- 侧边栏 -->
     <fragment
         android:id="@+id/menu_fragment"
         android:name="com.AlarmZeng.zhishi.activity.fragment.MenuFragment"

@@ -18,6 +18,7 @@ import com.AlarmZeng.zhishi.activity.bean.Content;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.AlarmZeng.zhishi.activity.db.WebCacheHelper;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -33,7 +34,7 @@ public class MainContentActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private WebView webView;
+    private static WebView webView;
 
     private ImageView image;
 
@@ -69,6 +70,8 @@ public class MainContentActivity extends AppCompatActivity {
             }
         });
 
+        boolean isFirstChecked = PrefUtils.getBoolean(MainContentActivity.this, "firstChecked", false);
+
         webView = (WebView) findViewById(R.id.web_view);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -76,6 +79,7 @@ public class MainContentActivity extends AppCompatActivity {
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDatabaseEnabled(true);
         settings.setAppCacheEnabled(true);
+        settings.setTextSize(isFirstChecked ? WebSettings.TextSize.LARGER : WebSettings.TextSize.NORMAL);
 
         helper = WebCacheHelper.getInstance(MainContentActivity.this, 1);
 
