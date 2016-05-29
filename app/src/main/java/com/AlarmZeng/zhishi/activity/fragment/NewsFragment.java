@@ -158,9 +158,4 @@ public class NewsFragment extends BaseFragment{
         });
     }
 
-    /*public void updateBackGroundMode() {
-
-        adapter.updateBackGroudMode();
-    }*/
-
 }

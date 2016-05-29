@@ -102,7 +102,8 @@ public class MenuFragment extends BaseFragment {
 
                     FragmentManager manager = getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.replace(R.id.fl_fragment_container, newsFragment, "news");
+                    transaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+                            .replace(R.id.fl_fragment_container, newsFragment, "news");
                     transaction.commit();
                 }
 
@@ -116,7 +117,7 @@ public class MenuFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        String result = PrefUtils.getString(mActivity, Constants.MENU_LIST_RUL, null);
+        String result = PrefUtils.getString(mActivity, Constants.MENU_LIST_URL, null);
         if (!TextUtils.isEmpty(result)) {
             processResult(result);
         }
@@ -124,19 +125,11 @@ public class MenuFragment extends BaseFragment {
         getDataFromServer();
     }
 
-    public void updateBackgroundMode() {
-
-        boolean isDark = ((MainActivity) mActivity).isDark;
-        headerView.setBackgroundResource(isDark ? R.color.colorLightBlue : R.color.colorMenuHeaderDark);
-        firstPage.setBackgroundColor(isDark ? Color.WHITE : getResources().getColor(R.color.colorMenuListDark));
-        adapter.updateBackgroundMode();
-    }
-
     private void getDataFromServer() {
 
 
         HttpUtils utils = new HttpUtils();
-        utils.send(HttpRequest.HttpMethod.GET, Constants.MENU_LIST_RUL, new RequestCallBack<String>() {
+        utils.send(HttpRequest.HttpMethod.GET, Constants.MENU_LIST_URL, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
@@ -144,7 +137,7 @@ public class MenuFragment extends BaseFragment {
 
                 processResult(result);
 
-                PrefUtils.putString(mActivity, Constants.MENU_LIST_RUL, result);
+                PrefUtils.putString(mActivity, Constants.MENU_LIST_URL, result);
             }
 
             @Override
@@ -160,7 +153,6 @@ public class MenuFragment extends BaseFragment {
         try {
 
             JSONObject object = new JSONObject(response);
-
             JSONArray array = object.getJSONArray("others");
 
             mItemList = new ArrayList<>();
@@ -230,11 +222,6 @@ public class MenuFragment extends BaseFragment {
             return view;
         }
 
-        public void updateBackgroundMode() {
-
-            isDark = ((MainActivity) mActivity).isDark;
-            notifyDataSetChanged();
-        }
     }
 
 
