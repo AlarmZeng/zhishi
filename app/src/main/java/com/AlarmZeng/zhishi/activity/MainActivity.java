@@ -3,7 +3,6 @@ package com.AlarmZeng.zhishi.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +18,7 @@ import android.widget.ImageView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.fragment.MainNewsFragment;
+import com.AlarmZeng.zhishi.activity.utils.SnackbarUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     drawerLayout.openDrawer(Gravity.LEFT);
                 }
-
             }
         });
 
@@ -155,28 +154,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setDrawerClose();
         }
         else {
-
-            Snackbar sb = Snackbar.make(snackContainer, "再按一次退出", Snackbar.LENGTH_SHORT);
-            sb.getView().setBackgroundResource(R.color.colorLightBlue);
-            sb.show();
-
+            SnackbarUtils.showSnackbar(snackContainer, "再按一次退出");
             if (firstClick > 0) {
                 if (System.currentTimeMillis() - firstClick < 1500) {
                     super.onBackPressed();
                     firstClick = 0;
                 }
             }
-
             firstClick = System.currentTimeMillis();
         }
-
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
-
             case R.id.iv_collection :
                 Intent collectionIntent = new Intent(MainActivity.this, CollectionActivity.class);
                 startActivity(collectionIntent);

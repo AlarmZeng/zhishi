@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,12 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.adapter.CollectionItemAdapter;
 import com.AlarmZeng.zhishi.activity.bean.Collection;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.SnackbarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
     private AnimationSet set;
     private CollectionItemAdapter adapter;
     private Collection currentCollection;
+    private CoordinatorLayout snackbarContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_collection);
         toolbar = (Toolbar) findViewById(R.id.collection_toolbar);
         listView = (ListView) findViewById(R.id.lv_collections);
+        snackbarContainer = (CoordinatorLayout) findViewById(R.id.snack_bar_container);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -139,10 +142,10 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
                 int number = getContentResolver().delete(Constants.URI_COLLECTION_DELETE, "content_id = ?", new String[] {currentCollection.getId()});
                 if (number > 0) {
                     adapter.deleteItem(currentCollection);
-                    Toast.makeText(CollectionActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                    SnackbarUtils.showSnackbar(snackbarContainer, "删除成功");
                 }
                 else {
-                    Toast.makeText(CollectionActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
+                    SnackbarUtils.showSnackbar(snackbarContainer, "删除失败");
                 }
 
                 break;

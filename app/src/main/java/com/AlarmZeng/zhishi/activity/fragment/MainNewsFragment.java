@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
@@ -28,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
@@ -41,6 +41,7 @@ import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.AlarmZeng.zhishi.activity.utils.LogUtils;
 import com.AlarmZeng.zhishi.activity.utils.NetWorkUtils;
 import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
+import com.AlarmZeng.zhishi.activity.utils.SnackbarUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -55,7 +56,7 @@ import pers.medusa.circleindicator.widget.CircleIndicator;
 /**
  * Created by hunter_zeng on 2016/5/18.
  */
-public class MainNewsFragment extends BaseFragment implements View.OnClickListener{
+public class MainNewsFragment extends BaseFragment implements View.OnClickListener {
 
     private ViewPager viewPager;
 
@@ -83,20 +84,12 @@ public class MainNewsFragment extends BaseFragment implements View.OnClickListen
     private MainNews.Stories currentStories;
 
     private boolean isExist;
+    private View view;
+    private CoordinatorLayout snackbarContainer;
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = View.inflate(mActivity, R.layout.fragment_main_news, null);
-        listView = (ListView) view.findViewById(R.id.lv_fragment_main_news);
-
-        View headerView = View.inflate(mActivity, R.layout.fragment_main_news_header, null);
-        viewPager = (ViewPager) headerView.findViewById(R.id.vp_first_view_pager);
-//        llContainer = (LinearLayout) headerView.findViewById(R.id.ll_container);
-//        ivRedPoint = (ImageView) headerView.findViewById(R.id.iv_red_point);
-        indicator = (CircleIndicator) headerView.findViewById(R.id.indicator);
-
-        listView.addHeaderView(headerView);
+        initView();
 
         ((MainActivity) mActivity).setToolbarTitle("知事");
 
@@ -112,6 +105,20 @@ public class MainNewsFragment extends BaseFragment implements View.OnClickListen
         });
 
         return view;
+    }
+
+    private void initView() {
+        view = View.inflate(mActivity, R.layout.fragment_main_news, null);
+        View headerView = View.inflate(mActivity, R.layout.fragment_main_news_header, null);
+        listView = (ListView) view.findViewById(R.id.lv_fragment_main_news);
+        snackbarContainer = (CoordinatorLayout) view.findViewById(R.id.snack_bar_container);
+
+        viewPager = (ViewPager) headerView.findViewById(R.id.vp_first_view_pager);
+        indicator = (CircleIndicator) headerView.findViewById(R.id.indicator);
+        //llContainer = (LinearLayout) headerView.findViewById(R.id.ll_container);
+//        ivRedPoint = (ImageView) headerView.findViewById(R.id.iv_red_point);
+
+        listView.addHeaderView(headerView);
     }
 
     @Override
@@ -469,21 +476,16 @@ public class MainNewsFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.tv_collect :
-
+            case R.id.tv_collect:
                 window.dismiss();
-                LogUtils.i("点击了收藏-----------");
-
-                Cursor cursor = getContext().getContentResolver().query(Constants.URI_COLLECTION_QUERY, new String[] {"content_id"}, null, null, null);
-
+                Cursor cursor = getContext().getContentResolver().query(Constants.URI_COLLECTION_QUERY, new String[]{"content_id"}, null, null, null);
                 if (cursor.moveToFirst()) {
-
                     do {
                         String id = cursor.getString(0);
                         if (currentStories.getId().equals(id)) {
                             isExist = true;
                         }
-                    }while(cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
 
                 if (!isExist) {
@@ -495,18 +497,14 @@ public class MainNewsFragment extends BaseFragment implements View.OnClickListen
                     Uri uriReturn = getContext().getContentResolver().insert(Constants.URI_COLLECTION_INSERT, values);
 
                     if (uriReturn != null) {
-                        Toast.makeText(mActivity, "收藏成功", Toast.LENGTH_SHORT).show();
+                        SnackbarUtils.showSnackbar(snackbarContainer, "收藏成功");
+                    } else {
+                        SnackbarUtils.showSnackbar(snackbarContainer, "收藏失败");
                     }
-                    else {
-                        Toast.makeText(mActivity, "收藏失败", Toast.LENGTH_SHORT).show();
-                    }
+                } else {
+                    SnackbarUtils.showSnackbar(snackbarContainer, "已经收藏过了");
                 }
-                else {
-                    Toast.makeText(mActivity, "已经收藏过了", Toast.LENGTH_SHORT).show();
-                }
-
                 isExist = false;
-
                 break;
         }
     }
