@@ -78,8 +78,6 @@ public class MainNewsItemAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        //view.setBackgroundResource(isDark ? R.drawable.card_background_selector : R.color.colorListItemDark);
-
         MainNews.Stories stories = (MainNews.Stories) getItem(position);
 
         String readId = PrefUtils.getString(context, "is_read", "");
@@ -107,12 +105,6 @@ public class MainNewsItemAdapter extends BaseAdapter {
 
         return view;
     }
-
-    /*public void UpdateBackgroundMode() {
-
-        isDark = ((MainActivity) context).isDark;
-        notifyDataSetChanged();
-    }*/
 
     class ViewHolder {
 

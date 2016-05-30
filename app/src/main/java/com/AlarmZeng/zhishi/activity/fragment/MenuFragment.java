@@ -71,7 +71,8 @@ public class MenuFragment extends BaseFragment {
 
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fl_fragment_container, new MainNewsFragment());
+                transaction.setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+                        .replace(R.id.fl_fragment_container, new MainNewsFragment());
                 transaction.commit();
 
                 ((MainActivity) mActivity).setDrawerClose();

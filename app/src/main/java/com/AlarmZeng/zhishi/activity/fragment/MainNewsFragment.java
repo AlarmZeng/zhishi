@@ -1,7 +1,11 @@
 package com.AlarmZeng.zhishi.activity.fragment;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,12 +17,18 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
@@ -28,6 +38,8 @@ import com.AlarmZeng.zhishi.activity.adapter.MainNewsPagerAdapter;
 import com.AlarmZeng.zhishi.activity.bean.Before;
 import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.LogUtils;
+import com.AlarmZeng.zhishi.activity.utils.NetWorkUtils;
 import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
@@ -43,7 +55,7 @@ import pers.medusa.circleindicator.widget.CircleIndicator;
 /**
  * Created by hunter_zeng on 2016/5/18.
  */
-public class MainNewsFragment extends BaseFragment {
+public class MainNewsFragment extends BaseFragment implements View.OnClickListener{
 
     private ViewPager viewPager;
 
@@ -62,10 +74,15 @@ public class MainNewsFragment extends BaseFragment {
 
     private String loadDate;
     private boolean isLoading = false;
-
     private CircleIndicator indicator;
-
     private Handler handler = null;
+
+    private PopupWindow window;
+    private View contentView;
+    private AnimationSet set;
+    private MainNews.Stories currentStories;
+
+    private boolean isExist;
 
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,7 +107,6 @@ public class MainNewsFragment extends BaseFragment {
             public void onRefresh() {
 
                 getDataFromServer();
-
                 refresh.setRefreshing(false);
             }
         });
@@ -101,10 +117,11 @@ public class MainNewsFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        String result = PrefUtils.getString(mActivity, Constants.TOP_STORIES_URL, null);
-
-        if (!TextUtils.isEmpty(result)) {
-            processResult(result);
+        if (!NetWorkUtils.isNetworkConnected(mActivity)) {
+            String result = PrefUtils.getString(mActivity, Constants.TOP_STORIES_URL, null);
+            if (!TextUtils.isEmpty(result)) {
+                processResult(result);
+            }
         }
 
         getDataFromServer();
@@ -301,6 +318,50 @@ public class MainNewsFragment extends BaseFragment {
                 }
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                LogUtils.i("第" + position + "个条目被点击了-------");
+                int headerCount = listView.getHeaderViewsCount();
+                currentStories = (MainNews.Stories) newsItemAdapter.getItem(position - headerCount);
+                LogUtils.i("条目信息：" + currentStories.getTitle());
+
+                if (currentStories.getType() != Constants.MAIN_TOPIC) {
+                    showPopupWindow(view);
+                }
+
+                return true;
+            }
+        });
+    }
+
+    private void showPopupWindow(View view) {
+
+        if (window == null) {
+
+            contentView = View.inflate(mActivity, R.layout.popup_window_layout, null);
+            TextView collect = (TextView) contentView.findViewById(R.id.tv_collect);
+            collect.setOnClickListener(this);
+            window = new PopupWindow(contentView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            window.setBackgroundDrawable(new ColorDrawable());
+
+            //弹窗动画效果
+            set = new AnimationSet(false);
+
+            ScaleAnimation scale = new ScaleAnimation(0.2f, 1, 0.2f, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0.5f);
+            scale.setDuration(500);
+
+            AlphaAnimation alpha = new AlphaAnimation(0.2f, 1);
+            alpha.setDuration(500);
+
+            set.addAnimation(scale);
+            set.addAnimation(alpha);
+        }
+
+        window.showAsDropDown(view, view.getWidth() / 2, -view.getHeight());
+        contentView.startAnimation(set);
     }
 
     private void loadMore() {
@@ -372,31 +433,31 @@ public class MainNewsFragment extends BaseFragment {
 
         switch (week) {
 
-            case 1 :
+            case 1:
                 fDay = m + "月" + d + "日" + "  " + "星期二";
                 break;
 
-            case 2 :
+            case 2:
                 fDay = m + "月" + d + "日" + "  " + "星期三";
                 break;
 
-            case 3 :
+            case 3:
                 fDay = m + "月" + d + "日" + "  " + "星期四";
                 break;
 
-            case 4 :
+            case 4:
                 fDay = m + "月" + d + "日" + "  " + "星期五";
                 break;
 
-            case 5 :
+            case 5:
                 fDay = m + "月" + d + "日" + "  " + "星期六";
                 break;
 
-            case 6 :
+            case 6:
                 fDay = m + "月" + d + "日" + "  " + "星期日";
                 break;
 
-            case 7 :
+            case 7:
                 fDay = m + "月" + d + "日" + "  " + "星期一";
                 break;
         }
@@ -404,8 +465,49 @@ public class MainNewsFragment extends BaseFragment {
         return fDay;
     }
 
-    /*public void UpdateBackgroundMode() {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
 
-        newsItemAdapter.UpdateBackgroundMode();
-    }*/
+            case R.id.tv_collect :
+
+                window.dismiss();
+                LogUtils.i("点击了收藏-----------");
+
+                Cursor cursor = getContext().getContentResolver().query(Constants.URI_COLLECTION_QUERY, new String[] {"content_id"}, null, null, null);
+
+                if (cursor.moveToFirst()) {
+
+                    do {
+                        String id = cursor.getString(0);
+                        if (currentStories.getId().equals(id)) {
+                            isExist = true;
+                        }
+                    }while(cursor.moveToNext());
+                }
+
+                if (!isExist) {
+                    ContentValues values = new ContentValues();
+                    values.put("title", currentStories.getTitle());
+                    values.put("images", currentStories.getImages().get(0));
+                    values.put("content_id", currentStories.getId());
+                    values.put("type", currentStories.getType());
+                    Uri uriReturn = getContext().getContentResolver().insert(Constants.URI_COLLECTION_INSERT, values);
+
+                    if (uriReturn != null) {
+                        Toast.makeText(mActivity, "收藏成功", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(mActivity, "收藏失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(mActivity, "已经收藏过了", Toast.LENGTH_SHORT).show();
+                }
+
+                isExist = false;
+
+                break;
+        }
+    }
 }

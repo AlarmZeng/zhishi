@@ -16,23 +16,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <RelativeLayout
+                android:id="@+id/rl_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorLightBlue"
-                android:minHeight="?attr/actionBarSize"
-                app:popupTheme="@style/ToolbarPopupTheme"
-                app:theme="@style/MyActionBar"
-                app:titleTextColor="#fff">
+                android:layout_height="wrap_content">
 
-            </android.support.v7.widget.Toolbar>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLightBlue"
+                    android:minHeight="?attr/actionBarSize"
+                    app:popupTheme="@style/ToolbarPopupTheme"
+                    app:theme="@style/MyActionBar"
+                    app:titleTextColor="#fff">
+
+                </android.support.v7.widget.Toolbar>
+
+                <ImageView
+                    android:id="@+id/iv_collection"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="54dp"
+                    android:background="@drawable/collection"/>
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:id="@+id/fl_fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/toolbar">
+                android:layout_below="@id/rl_toolbar">
 
             </FrameLayout>
 

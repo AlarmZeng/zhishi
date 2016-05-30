@@ -15,11 +15,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.fragment.MainNewsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SwipeRefreshLayout refresh;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean isDark = false;
     private long firstClick;
     private CoordinatorLayout snackContainer;
+    private ImageView collection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        collection = (ImageView) findViewById(R.id.iv_collection);
+        collection.setOnClickListener(this);
 
         refresh = (SwipeRefreshLayout) findViewById(R.id.srl_swipe_refresh);
         refresh.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_blue_light, android.R.color.holo_blue_light, android.R.color.holo_blue_light);
@@ -165,5 +170,17 @@ public class MainActivity extends AppCompatActivity {
             firstClick = System.currentTimeMillis();
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.iv_collection :
+                Intent collectionIntent = new Intent(MainActivity.this, CollectionActivity.class);
+                startActivity(collectionIntent);
+                break;
+        }
     }
 }

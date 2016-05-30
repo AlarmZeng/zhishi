@@ -16,10 +16,12 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             >
         </activity>
 
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,17 +29,32 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MainContentActivity" >
+        <activity android:name=".activity.MainContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
 
-        <activity android:name=".activity.NewsContentActivity" >
+        <activity android:name=".activity.NewsContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
 
-        <activity android:name=".activity.SettingActivity">
+        <activity android:name=".activity.SettingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
+
+        <activity android:name=".activity.CollectionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+
+        </activity>
+
+        <provider
+            android:authorities="com.AlarmZeng.zhishi.provider"
+            android:name=".activity.provider.CollectionProvider"
+            android:exported="true">
+
+        </provider>
 
     </application>
 

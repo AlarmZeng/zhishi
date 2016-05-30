@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.MainActivity;
@@ -20,6 +22,7 @@ import com.AlarmZeng.zhishi.activity.NewsContentActivity;
 import com.AlarmZeng.zhishi.activity.adapter.NewsItemAdapter;
 import com.AlarmZeng.zhishi.activity.bean.News;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
+import com.AlarmZeng.zhishi.activity.utils.NetWorkUtils;
 import com.AlarmZeng.zhishi.activity.utils.PrefUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -58,6 +61,14 @@ public class NewsFragment extends BaseFragment{
 
         newsListView.addHeaderView(headerView);
 
+        final SwipeRefreshLayout refresh = ((MainActivity) mActivity).getRefresh();
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh.setRefreshing(false);
+            }
+        });
+
         return view;
     }
 
@@ -71,10 +82,11 @@ public class NewsFragment extends BaseFragment{
 
         ((MainActivity) mActivity).setToolbarTitle(title);
 
-        String result = PrefUtils.getString(mActivity, Constants.MENU_NEWS_URL + itemId, "");
-
-        if (!TextUtils.isEmpty(result)) {
-            processResult(result);
+        if (!NetWorkUtils.isNetworkConnected(mActivity)) {
+            String result = PrefUtils.getString(mActivity, Constants.MENU_NEWS_URL + itemId, "");
+            if (!TextUtils.isEmpty(result)) {
+                processResult(result);
+            }
         }
         
         getNewsDateFromServer(itemId);
@@ -90,14 +102,12 @@ public class NewsFragment extends BaseFragment{
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
                 String result = responseInfo.result;
-
                 PrefUtils.putString(mActivity, url, result);
                 processResult(result);
             }
-
             @Override
             public void onFailure(HttpException e, String s) {
-
+                Toast.makeText(mActivity, "网络发生错误", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -124,7 +134,11 @@ public class NewsFragment extends BaseFragment{
             @Override
             public void onScroll(AbsListView absListView, int firstVisibleItem, int i1, int i2) {
 
-                ((MainActivity) mActivity).setSwipeRefreshEnable(false);
+                //((MainActivity) mActivity).setSwipeRefreshEnable(false);
+                if (newsListView != null && newsListView.getChildCount() > 0) {
+                    boolean enable = (firstVisibleItem == 0) && (absListView.getChildAt(firstVisibleItem).getTop() == 0);
+                    ((MainActivity) mActivity).setSwipeRefreshEnable(enable);
+                }
             }
         });
 
