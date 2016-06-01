@@ -1,5 +1,6 @@
 package com.AlarmZeng.zhishi.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
 import com.AlarmZeng.zhishi.activity.adapter.CollectionItemAdapter;
-import com.AlarmZeng.zhishi.activity.bean.Collection;
+import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.AlarmZeng.zhishi.activity.gloable.Constants;
 import com.AlarmZeng.zhishi.activity.utils.SnackbarUtils;
 
@@ -34,13 +35,13 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
 
     private Toolbar toolbar;
 
-    private List<Collection> collections;
+    private List<MainNews.Stories> collections;
     private ListView listView;
     private PopupWindow window;
     private View contentView;
     private AnimationSet set;
     private CollectionItemAdapter adapter;
-    private Collection currentCollection;
+    private MainNews.Stories currentCollection;
     private CoordinatorLayout snackbarContainer;
 
     @Override
@@ -74,11 +75,12 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
         collections = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
+                MainNews.Stories c = new MainNews.Stories();
 
-                Collection c = new Collection();
-
+                List<String> imageList = new ArrayList<>();
+                imageList.add(cursor.getString(cursor.getColumnIndex("images")));
+                c.setImages(imageList);
                 c.setTitle(cursor.getString(cursor.getColumnIndex("title")));
-                c.setImage(cursor.getString(cursor.getColumnIndex("images")));
                 c.setId(cursor.getString(cursor.getColumnIndex("content_id")));
                 c.setType(cursor.getInt(cursor.getColumnIndex("type")));
 
@@ -94,10 +96,21 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
         adapter = new CollectionItemAdapter(CollectionActivity.this, collections);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MainNews.Stories currentItem = collections.get(position);
+
+                Intent mainIntent = new Intent(CollectionActivity.this, MainContentActivity.class);
+                mainIntent.putExtra("stories", currentItem);
+                startActivity(mainIntent);
+            }
+        });
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                currentCollection = (Collection) adapter.getItem(position);
+                currentCollection = (MainNews.Stories) adapter.getItem(position);
                 showPopupWindow(view);
                 return true;
             }
@@ -138,7 +151,6 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.tv_collect :
                 window.dismiss();
-
                 int number = getContentResolver().delete(Constants.URI_COLLECTION_DELETE, "content_id = ?", new String[] {currentCollection.getId()});
                 if (number > 0) {
                     adapter.deleteItem(currentCollection);

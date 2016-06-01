@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.AlarmZeng.zhishi.R;
-import com.AlarmZeng.zhishi.activity.bean.Collection;
+import com.AlarmZeng.zhishi.activity.bean.MainNews;
 import com.lidroid.xutils.BitmapUtils;
 
 import java.util.List;
@@ -19,10 +19,10 @@ import java.util.List;
 public class CollectionItemAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Collection> collections;
+    private List<MainNews.Stories> collections;
     private BitmapUtils utils;
 
-    public CollectionItemAdapter(Context context, List<Collection> collections) {
+    public CollectionItemAdapter(Context context, List<MainNews.Stories> collections) {
         this.context = context;
         this.collections = collections;
         utils = new BitmapUtils(context);
@@ -60,15 +60,15 @@ public class CollectionItemAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        Collection c = (Collection) getItem(position);
+        MainNews.Stories c = (MainNews.Stories) getItem(position);
         holder.title.setText(c.getTitle());
 
-        utils.display(holder.image, c.getImage());
+        utils.display(holder.image, c.getImages().get(0));
 
         return view;
     }
 
-    public void deleteItem(Collection collection) {
+    public void deleteItem(MainNews.Stories collection) {
 
         collections.remove(collection);
         notifyDataSetChanged();

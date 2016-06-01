@@ -17,7 +17,6 @@ public class CollectionHelper extends SQLiteOpenHelper {
     public static CollectionHelper getInstances(Context context, int version) {
 
         if (instance == null) {
-
             synchronized (CollectionHelper.class) {
                 if (instance == null) {
                     instance = new CollectionHelper(context, "collection.db", null, version);

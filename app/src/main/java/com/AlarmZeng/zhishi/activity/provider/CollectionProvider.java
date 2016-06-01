@@ -52,7 +52,7 @@ public class CollectionProvider extends ContentProvider {
         helper = CollectionHelper.getInstances(getContext(), 1);
         db = helper.getWritableDatabase();
 
-        return false;
+        return true;
     }
 
     @Nullable
