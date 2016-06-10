@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-
-    public boolean isDark = false;
     private long firstClick;
     private CoordinatorLayout snackContainer;
     private ImageView collection;
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawers();
                 } else {
@@ -117,29 +114,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (item.getItemId()) {
 
-            case R.id.action_dark:
-                /*drawerLayout.setBackgroundResource(isDark ? R.color.colorDrawerLayoutLight : R.color.colorDrawerLayoutDark);
-                toolbar.setBackgroundResource(isDark ? R.color.colorLightBlue : R.color.colorToolbarDark);
-                item.setTitle(!isDark ? "日间模式" : "夜间模式");
-                ((MenuFragment) getSupportFragmentManager().findFragmentById(R.id.menu_fragment)).updateBackgroundMode();
-
-                if (getSupportFragmentManager().findFragmentByTag("mainNews") !=null) {
-
-                    ((MainNewsFragment) getSupportFragmentManager().findFragmentByTag("mainNews")).UpdateBackgroundMode();
-                }
-                else {
-
-                    ((NewsFragment) getSupportFragmentManager().findFragmentByTag("news")).updateBackGroundMode();
-                }
-
-                isDark = !isDark;*/
+            case R.id.about:
+                Intent aboutIntent = new Intent(MainActivity.this, AboutMeActivity.class);
+                startActivity(aboutIntent);
                 break;
 
             case R.id.action_settings:
-
                 Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(settingIntent);
-
                break;
         }
 

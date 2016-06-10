@@ -35,7 +35,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 /**
  * Created by hunter_zeng on 2016/5/20.
  */
-public class NewsFragment extends BaseFragment{
+public class NewsFragment extends BaseFragment {
 
     private ImageView newsImage;
 
@@ -88,7 +88,6 @@ public class NewsFragment extends BaseFragment{
                 processResult(result);
             }
         }
-        
         getNewsDateFromServer(itemId);
     }
 
@@ -100,11 +99,11 @@ public class NewsFragment extends BaseFragment{
         utils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-
                 String result = responseInfo.result;
                 PrefUtils.putString(mActivity, url, result);
                 processResult(result);
             }
+
             @Override
             public void onFailure(HttpException e, String s) {
                 Toast.makeText(mActivity, "网络发生错误", Toast.LENGTH_SHORT).show();
@@ -160,7 +159,6 @@ public class NewsFragment extends BaseFragment{
                 tvTitle.setTextColor(Color.GRAY);
 
                 if (!readId.contains(newsStories.getId())) {
-
                     readId = readId + "," + newsStories.getId();
                     PrefUtils.putString(mActivity, "is_read", readId);
                 }

@@ -22,7 +22,7 @@
         CircleIndicator:ci_selected_background="#ffffff"
         CircleIndicator:ci_mode="outside"
         android:layout_alignBottom="@id/vp_first_view_pager"
-        CircleIndicator:ci_radius="4dp"
+        CircleIndicator:ci_radius="3dp"
         CircleIndicator:ci_margin="5dp"
         />
 

@@ -54,13 +54,11 @@ public class MainNewsPagerAdapter extends PagerAdapter {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent mainContentIntent = new Intent(context, MainContentActivity.class);
                 mainContentIntent.putExtra("topStories", stories);
                 context.startActivity(mainContentIntent);
             }
         });
-
 
         text.setText(stories.getTitle());
 

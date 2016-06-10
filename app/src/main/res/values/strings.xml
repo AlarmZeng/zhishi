@@ -2,4 +2,11 @@
     <string name="app_name">知事</string>
     <string name="action_settings">设置选项</string>
     <string name="action_dark">夜间模式</string>
+    <string name="about">关于</string>
+    <string name="about_me">关于我</string>
+    <string name="version">v1.0.0</string>
+    <string name="declaration">描述</string>
+    <string name="name">开发者：AlarmZeng</string>
+    <string name="email">邮箱：AlarmZeng@163.com</string>
+    <string name="declaration_content">知事是本人模仿知乎新闻客户端的一个项目，项目的API均来自知乎</string>
 </resources>
